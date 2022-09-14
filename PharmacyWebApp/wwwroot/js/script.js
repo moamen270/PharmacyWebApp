@@ -79,6 +79,7 @@
 
 })(jQuery);
 
+<<<<<<< HEAD
 (function ($) {
 	"use strict"
 
@@ -124,3 +125,16 @@
 
 
 })(jQuery);
+=======
+$(document).ready(function ($) {
+	"use strict";
+
+	$('.skill-shortcode').appear(function () {
+		$('.progress').each(function () {
+			$('.progress-bar').css('width', function () { return ($(this).attr('data-percentage') + '%') });
+		});
+	}, { accY: -100 });
+
+
+});
+>>>>>>> 2f79b01d9b20711481b000203e2c79f1ac30081d
