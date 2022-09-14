@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Frontend\" />
+    <Compile Remove="Frontend\**" />
+    <Content Remove="Frontend\**" />
+    <EmbeddedResource Remove="Frontend\**" />
+    <None Remove="Frontend\**" />
   </ItemGroup>
 
 </Project>
