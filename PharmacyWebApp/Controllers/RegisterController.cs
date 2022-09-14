@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace PharmacyWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class RegisterController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<RegisterController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public RegisterController(ILogger<RegisterController> logger)
         {
             _logger = logger;
         }

@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace PharmacyWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class Donate : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<Donate> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public Donate(ILogger<Donate> logger)
         {
             _logger = logger;
         }
@@ -18,7 +18,7 @@ namespace PharmacyWebApp.Controllers
             return View();
         }
 
-        
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
