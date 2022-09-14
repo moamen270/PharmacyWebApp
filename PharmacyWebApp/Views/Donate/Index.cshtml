@@ -7,7 +7,8 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="p-5 shadow rounded content">
-          <h2 class="section-title">Got Any Questions</h2>
+          <h2 class="section-title">Contact Info</h2>
+          <img class="col-lg-3 float-lg-right" src="~/images/Money.png" alt="Money Money" />
           <form method="POST" action="#">
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -25,22 +26,142 @@
                 required>
             </div>
             <div class="form-group">
-              <label for="reason">Reason of Contact</label>
+              <label for="reason">Reason of Donate </label>
               <select id="reason" class="form-control custom-select" name="reason" required>
                 <option selected disabled>Choose Your Reason</option>
                 <option value="business">Business</option>
-                <option value="ticket">Ticket</option>
+                <option value="ticket">Helping</option>
                 <option value="project">Project</option>
+                <option value="business">Others</option>
               </select>
             </div>
+             <div class="form-group">
+             <label for="Money">Amout of Money (USD$)</label>
+               <input type="number" class="" min="1" step="any" />
+            
+             </div>
+            
             <div class="form-group">
-              <label for="message">Start Writing From Here</label>
-              <textarea name="message" id="message" class="form-control" placeholder="Your Text here ..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" class="btn btn-primary">Donate</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+@*<div class="content-body">
+
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                    <div>
+                        <h4>Account Details</h4>
+                        <section>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="password" name="Password" class="form-control" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4>Your Address</h4>
+                        <section>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" name="firstName" class="form-control" placeholder="First Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" name="lastName" class="form-control" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input type="text" name="address" class="form-control" placeholder="Address" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" name="city" class="form-control" placeholder="City" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" name="zip" class="form-control" placeholder="ZIP Code" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4>Billing Details</h4>
+                        <section>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="creditCard" placeholder="Credit Card Number">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="date" placeholder="Expiration Date">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="owner" placeholder="Credit Card Owner">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h4>Confirmation</h4>
+                        <section>
+                            <div class="row h-100">
+                                <div class="col-12 h-100 d-flex flex-column justify-content-center align-items-center">
+                                    <h2>You have submitted form successfully!</h2>
+                                    <p>Thank you very much for you information. we will procceed accordingly.</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+
+       *@
