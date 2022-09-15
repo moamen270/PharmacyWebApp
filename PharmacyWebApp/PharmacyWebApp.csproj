@@ -13,4 +13,8 @@
     <None Remove="Frontend\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+  </ItemGroup>
+
 </Project>
