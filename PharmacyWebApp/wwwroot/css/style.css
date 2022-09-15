@@ -401,9 +401,15 @@ a:hover {
 .bg-primary {
   background: #00DFBF !important;
 }
+.bg-secondary {
+    background: #375A64 !important;
+}
 
 .text-primary {
   color: #00DFBF !important;
+}
+.text-secondary {
+    color: #375A64 !important;
 }
 
 .text-light {
@@ -1616,6 +1622,7 @@ pre .copy-to-clipboard {
     }
 }
 
+
 .tag {
     position: absolute;
     background: #e86b00;
@@ -1987,4 +1994,5 @@ pre .copy-to-clipboard {
         width: 100%;
         object-fit: contain;
     }
+
 /*# sourceMappingURL=style.css.map */
