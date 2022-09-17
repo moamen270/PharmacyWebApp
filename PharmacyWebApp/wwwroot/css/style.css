@@ -138,100 +138,6 @@ h6, .h6 {
   }
 }
 
-.hero-bg-1 {
-  position: absolute;
-  left: 30px;
-  top: 200px;
-}
-@media (max-width: 767px) {
-  .hero-bg-1 {
-    display: none;
-  }
-}
-.hero-bg-2 {
-  position: absolute;
-  top: 50%;
-  left: 20%;
-}
-@media (max-width: 767px) {
-  .hero-bg-2 {
-    display: none;
-  }
-}
-.hero-bg-3 {
-  position: absolute;
-  bottom: 0%;
-  left: 10%;
-}
-@media (max-width: 767px) {
-  .hero-bg-3 {
-    display: none;
-  }
-}
-.hero-bg-4 {
-  top: 210px;
-  right: 40%;
-  position: absolute;
-}
-@media (max-width: 767px) {
-  .hero-bg-4 {
-    display: none;
-  }
-}
-.hero-bg-5 {
-  position: absolute;
-  top: 250px;
-  right: 17%;
-}
-@media (max-width: 767px) {
-  .hero-bg-5 {
-    display: none;
-  }
-}
-.hero-bg-6 {
-  position: absolute;
-  right: 10%;
-  bottom: 20%;
-}
-@media (max-width: 767px) {
-  .hero-bg-6 {
-    display: none;
-  }
-}
-.hero-bg-7 {
-  position: absolute;
-  left: 20%;
-  bottom: -15%;
-  z-index: 1;
-}
-@media (max-width: 767px) {
-  .hero-bg-7 {
-    display: none;
-  }
-}
-.hero-bg-8 {
-  position: absolute;
-  bottom: -28%;
-  right: 48%;
-  z-index: 1;
-}
-@media (max-width: 767px) {
-  .hero-bg-8 {
-    display: none;
-  }
-}
-.hero-bg-9 {
-  position: absolute;
-  right: 20%;
-  bottom: -10%;
-  z-index: 1;
-}
-@media (max-width: 767px) {
-  .hero-bg-9 {
-    display: none;
-  }
-}
-
 /* Button style */
 .btn {
   font-size: 16px;
@@ -399,9 +305,11 @@ a:hover {
 }
 
 .bg-primary {
-  background: #00DFBF !important;
+   
+    background: #00DFBF !important;
 }
 .bg-secondary {
+    --bs-bg-opacity: 2;
     background: #375A64 !important;
 }
 
@@ -415,6 +323,7 @@ a:hover {
 .text-light {
   color: #999 !important;
 }
+
 
 .mb-10 {
   margin-bottom: 10px !important;

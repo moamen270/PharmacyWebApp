@@ -1,137 +1,128 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PharmacyWebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PharmacyWebApp.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - PharmacyWebApp</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/PharmacyWebApp.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+        <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <!-- themefy-icon -->
-    <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
-    <!-- slick slider -->
-    <link rel="stylesheet" href="plugins/slick/slick.css">
-    <!-- venobox popup -->
-    <link rel="stylesheet" href="plugins/Venobox/venobox.css">
-    <!-- aos -->
-    <link rel="stylesheet" href="plugins/aos/aos.css">
-    <!-- Main Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+        <!-- Libraries Stylesheet -->
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+        <!-- slick slider -->
+        <link rel="stylesheet" href="plugins/slick/slick.css">
+        <!-- venobox popup -->
+        <link rel="stylesheet" href="plugins/Venobox/venobox.css">
+        <!-- aos -->
+        <link rel="stylesheet" href="plugins/aos/aos.css">
+        <!-- Main Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
 
-    <!--Favicon-->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-</head>
-<body>
-
-    <header class="sticky-top navigation bg-white">
-        <div class=container>
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent ">
-
-
-                
-
-                <a class=navbar-brand asp-controller="Home" asp-action="Index"><img class="img-fluid" src="~/images/logo2.png" alt="Pharamacy"></a>
-
-                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-                <i class="ti-align-right h4 text-dark"></i></button>
-                <div class="collapse navbar-collapse text-center" id=navigation>
-                    <ul class="navbar-nav mx-auto align-items-center">
-                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="About" asp-action="Index">About</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Services" asp-action="Index">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Team" asp-action="Index">Team</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Index">Shop</a></li>
-                    </ul>
-                    <form class="form-inline search-wrapper d-none d-lg-block" class="search-wrapper" asp-controller="Search" asp-action="Index">
-                        <input id="search-by" name="s" type="search" class="form-control" placeholder="Search here ...">
-                        <button class="border-0 bg-white" type="submit"><i class="ti-search"></i></button>
-                    </form>
-                    <a asp-controller="Register" asp-action="Index" class="btn btn-sm btn-outline-primary ml-lg-4">SignUp</a>
-                    <a asp-controller="Donate" asp-action="Index" class="btn btn-sm btn-primary ml-lg-4">Donate</a>
-                </div>
-            </nav>
+        <!--Favicon-->
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <header class="sticky-top navigation bg-white">
+            <div class=container>
+                <nav class="navbar navbar-expand-lg navbar-light bg-transparent ">
+                    <a class=navbar-brand asp-controller="Home" asp-action="Index"><img class="img-fluid" src="~/images/logo2.png" alt="Pharamacy"></a>
+                    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+                    <i class="ti-align-right h4 text-dark"></i></button>
+                    <div class="collapse navbar-collapse text-center" id=navigation>
+                        <ul class="navbar-nav mx-auto align-items-center">
+                            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="About" asp-action="Index">About</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Services" asp-action="Index">Services</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Team" asp-action="Index">Team</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Index">Shop</a></li>
+                        </ul>
+                        <form class="form-inline search-wrapper d-none d-lg-block" class="search-wrapper" asp-controller="Search" asp-action="Index">
+                            <input id="search-by" name="s" type="search" class="form-control" placeholder="Search here ...">
+                            <button class="border-0 bg-white" type="submit"><i class="ti-search"></i></button>
+                        </form>
+                        <a asp-controller="Register" asp-action="Index" class="btn btn-sm btn-outline-primary ml-lg-4">SignUp</a>
+                        <a asp-controller="Donate" asp-action="Index" class="btn btn-sm btn-primary ml-lg-4">Donate</a>
+                    </div>
+                </nav>
             </div>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer>
+        </header>
         <div class="container">
-            <div class="row align-items-center border-bottom py-5">
-                <div class="col-lg-4">
-                    <ul class="list-inline footer-menu text-center text-lg-left">
-                        <li class="list-inline-item"><a  asp-controller="Register" asp-action="Index">Register</a></li>
-                        <li class="list-inline-item"><a  asp-controller="Donate" asp-action="Index">Donate</a></li>
-                        <li class="list-inline-item"><a  asp-controller="Search" asp-action="Index">Search</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 text-center mb-4 mb-lg-0">
-                    <a class="navbar-brand" href="index.html">
-                        <img class="img-fluid" src="~/images/logo2.png" alt="Pharamacy">
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <ul class="list-inline social-icons text-lg-right text-center">
-                        <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="ti-github"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="ti-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            @*<div class="py-4 text-center">
-                <small class="text-light">Copyright © 2020 a hugo theme by <a href="https://themefisher.com">themefisher</a></small>
-            </div>*@
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-</footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="plugins/jQuery/jquery.min.js"></script>
-    <script src="plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="plugins/masonry/masonry.min.js"></script>
-    <script src="plugins/clipboard/clipboard.min.js"></script>
-    <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
-    <script src="plugins/jQuery/jquery.min.js"></script>
-    <script src="./plugins/jquery-steps/build/jquery.steps.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="plugins/bootstrap/bootstrap.min.js"></script>
-    <!-- slick slider -->
-    <script src="plugins/slick/slick.min.js"></script>
-    <!-- venobox -->
-    <script src="plugins/Venobox/venobox.min.js"></script>
-    <!-- aos -->
-    <script src="plugins/aos/aos.js"></script>
-    <!-- Main Script -->
-    <script src="js/script.js"></script>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+        <footer>
+            <div class="container">
+                <div class="row align-items-center border-bottom py-5">
+                    <div class="col-lg-4">
+                        <ul class="list-inline footer-menu text-center text-lg-left">
+                            <li class="list-inline-item"><a  asp-controller="Register" asp-action="Index">Register</a></li>
+                            <li class="list-inline-item"><a  asp-controller="Donate" asp-action="Index">Donate</a></li>
+                            <li class="list-inline-item"><a  asp-controller="Search" asp-action="Index">Search</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                        <a class="navbar-brand" href="index.html">
+                            <img class="img-fluid" src="~/images/logo2.png" alt="Pharamacy">
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <ul class="list-inline social-icons text-lg-right text-center">
+                            <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ti-github"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ti-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                @*<div class="py-4 text-center">
+                    <small class="text-light">Copyright © 2020 a hugo theme by <a href="https://themefisher.com">themefisher</a></small>
+                </div>*@
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="plugins/jQuery/jquery.min.js"></script>
+        <script src="plugins/bootstrap/bootstrap.min.js"></script>
+        <script src="plugins/masonry/masonry.min.js"></script>
+        <script src="plugins/clipboard/clipboard.min.js"></script>
+        <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+        <script src="plugins/jQuery/jquery.min.js"></script>
+        <script src="./plugins/jquery-steps/build/jquery.steps.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="plugins/slick/slick.min.js"></script>
+        <!-- venobox -->
+        <script src="plugins/Venobox/venobox.min.js"></script>
+        <!-- aos -->
+        <script src="plugins/aos/aos.js"></script>
+        <!-- Main Script -->
+        <script src="js/script.js"></script>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>
