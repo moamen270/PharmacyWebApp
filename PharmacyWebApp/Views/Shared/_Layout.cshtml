@@ -53,7 +53,7 @@
                             <input id="search-by" name="s" type="search" class="form-control" placeholder="Search here ...">
                             <button class="border-0 bg-white" type="submit"><i class="ti-search"></i></button>
                         </form>
-                        <a asp-controller="Register" asp-action="Index" class="btn btn-sm btn-outline-primary ml-lg-4">SignUp</a>
+                        <a asp-controller="Register" asp-action="Index" class="btn btn-sm btn-outline-primary ml-lg-4">Login</a>
                         <a asp-controller="Donate" asp-action="Index" class="btn btn-sm btn-primary ml-lg-4">Donate</a>
                     </div>
                 </nav>
@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                     <div class="col-lg-4 text-center mb-4 mb-lg-0">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                             <img class="img-fluid" src="~/images/logo2.png" alt="Pharamacy">
                         </a>
                     </div>
