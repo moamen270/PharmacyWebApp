@@ -1,25 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Frontend\**" />
-    <Content Remove="Frontend\**" />
-    <EmbeddedResource Remove="Frontend\**" />
-    <None Remove="Frontend\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\slider\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
@@ -31,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PharmacyWebApp.DataAccess\PharmacyWebApp.DataAccess.csproj" />
     <ProjectReference Include="..\PharmacyWebApp.Models\PharmacyWebApp.Models.csproj" />
   </ItemGroup>
 

@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyWebApp", "PharmacyWebApp\PharmacyWebApp.csproj", "{2FD81194-212B-4E71-91C9-3DDCA8F3ADFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyWebApp", "PharmacyWebApp\PharmacyWebApp.csproj", "{2FD81194-212B-4E71-91C9-3DDCA8F3ADFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyWebApp.DataAccess", "PharmacyWebApp.DataAccess\PharmacyWebApp.DataAccess.csproj", "{B09CD402-3C63-44F5-9BE2-787E1FB657CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyWebApp.Models", "PharmacyWebApp.Models\PharmacyWebApp.Models.csproj", "{6EE24DE3-E920-4DDF-B2DE-9A0B5BF3B13A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2FD81194-212B-4E71-91C9-3DDCA8F3ADFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FD81194-212B-4E71-91C9-3DDCA8F3ADFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FD81194-212B-4E71-91C9-3DDCA8F3ADFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B09CD402-3C63-44F5-9BE2-787E1FB657CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09CD402-3C63-44F5-9BE2-787E1FB657CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09CD402-3C63-44F5-9BE2-787E1FB657CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09CD402-3C63-44F5-9BE2-787E1FB657CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE24DE3-E920-4DDF-B2DE-9A0B5BF3B13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE24DE3-E920-4DDF-B2DE-9A0B5BF3B13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE24DE3-E920-4DDF-B2DE-9A0B5BF3B13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE24DE3-E920-4DDF-B2DE-9A0B5BF3B13A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
