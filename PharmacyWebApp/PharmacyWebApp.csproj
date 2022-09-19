@@ -35,4 +35,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PharmacyWebApp.DataAccess\PharmacyWebApp.DataAccess.csproj" />
+    <ProjectReference Include="..\PharmacyWebApp.Models\PharmacyWebApp.Models.csproj" />
+  </ItemGroup>
+
 </Project>

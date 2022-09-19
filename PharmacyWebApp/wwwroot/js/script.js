@@ -79,7 +79,7 @@
 
 })(jQuery);
 
-<<<<<<< HEAD
+// HEAD
 (function ($) {
 	"use strict"
 
@@ -125,7 +125,8 @@
 
 
 })(jQuery);
-=======
+// 2f79b01d9b20711481b000203e2c79f1ac30081d
+
 $(document).ready(function ($) {
 	"use strict";
 
@@ -137,4 +138,3 @@ $(document).ready(function ($) {
 
 
 });
->>>>>>> 2f79b01d9b20711481b000203e2c79f1ac30081d
