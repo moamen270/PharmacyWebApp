@@ -44,30 +44,28 @@
             
             <button did="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary mb-2">Save</button>
         </div>
-            <div class="col-lg-4 ">
-                <div class="form-group">
-                    <label asp-for="Input.ProfilePicture" style="" class=""></label>
-                    @if (Model.Input.ProfilePicture != null)
-                    {
-                        <img id="ProfilePicture" alt="profile" src="data:image/*,@(Convert.ToBase64String(Model.Input.ProfilePicture))" />
-                    }
-                    else
-                    {
-                        <img id="ProfilePicture" alt="profile"   src="~/images/male-user-shadow.png" />
-                    }
-
-                    <div class="custom-file mt-2">
-                        <input type="file"
-                            accept="image/*"
-                            asp-for="Input.ProfilePicture"
-                            class="custom-file-input"
-                           onchange="document.getElementById('ProfilePicture').src =window.URL.createObjectURL(this.files[0]) " />
-                    <label class="custom-file-label" asp-for="Input.ProfilePicture">Choose Picture....</label>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Input.ProfilePicture" class="w-100"></label>
+                @if (Model.Input.ProfilePicture != null)
+                {
+                    <img id="profilePicture" alt="profile" class="profile-picture" src="data:image/*;base64,@(Convert.ToBase64String(Model.Input.ProfilePicture))" />
+                }
+                else
+                {
+                    <img id="profilePicture" alt="profile" class="profile-picture" src="~/images/user.png" />
+                }
+                <div class="custom-file mt-2">
+                    <input type="file"
+                           accept="image/*"
+                           asp-for="Input.ProfilePicture"
+                           class="custom-file-input"
+                           onchange="document.getElementById('profilePicture').src = window.URL.createObjectURL(this.files[0])" />
+                    <label class="custom-file-label" asp-for="Input.ProfilePicture">Choose picture...</label>
                     <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
-
-                    </div>
                 </div>
             </div>
+        </div>
     
 
   
