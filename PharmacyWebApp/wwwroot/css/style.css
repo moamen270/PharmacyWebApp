@@ -1904,4 +1904,13 @@ pre .copy-to-clipboard {
         object-fit: contain;
     }
 
+
+.ProfilePicture{
+    height:350px;
+    width:350px;
+    position:fixed;
+    overflow:hidden;
+    object-fit:cover;
+    float:right;
+}
 /*# sourceMappingURL=style.css.map */
