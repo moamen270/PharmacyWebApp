@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +96,7 @@
                 <div class="row align-items-center border-bottom py-5">
                     <div class="col-lg-4">
                         <ul class="list-inline footer-menu text-center text-lg-left">
-                            <li class="list-inline-item"><a  asp-controller="Login" asp-action="Index">Login</a></li>
+                            <li class="list-inline-item"><a  asp-area="Identity" asp-page="/Account/Login">Login</a></li>
                             <li class="list-inline-item"><a  asp-controller="Donate" asp-action="Index">Donate</a></li>
                             <li class="list-inline-item"><a  asp-controller="Search" asp-action="Index">Search</a></li>
                         </ul>
