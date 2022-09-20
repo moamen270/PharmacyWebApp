@@ -31,6 +31,10 @@ namespace PharmacyWebApp.DataAccess
         DbSet<Brand> Brands { get; set; }
         DbSet<Category> Categories { get; set; }
         DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        DbSet<Review> Reviews { get; set; }
+        DbSet<Order> Orders { get; set; }
+        DbSet<ShopCart> ShopCarts { get; set; }
+        DbSet<CreditCard> CreditCards { get; set; }
 
     }
 }

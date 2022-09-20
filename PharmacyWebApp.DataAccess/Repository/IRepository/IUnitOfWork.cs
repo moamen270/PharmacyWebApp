@@ -12,7 +12,9 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
         IBrandRepository Brand { get; }
         IShopCartRepository ShopCart { get; }
         ICategoryRepository Category { get; }
-        int SaveChanges();
+        IOrderRepository Order { get; }
+        IReviewRepository Review { get; }
+        int Save();
 
     }
 }

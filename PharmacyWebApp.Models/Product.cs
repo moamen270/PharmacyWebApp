@@ -18,7 +18,7 @@ namespace PharmacyWebApp.Models
         public int CategoryId { get; set; }
         [ValidateNever]
         public Category Category { get; set; }
-        /*public IReadOnlyCollection<Review> ReviewsList { get; set; }*/
+        public IReadOnlyCollection<Review> ReviewsList { get; set; }
 
     }
 }
