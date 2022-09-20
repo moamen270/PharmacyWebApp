@@ -18,7 +18,9 @@ namespace PharmacyWebApp.DataAccess.Repository
 
         public ICategoryRepository Category { get; private set; }
 
-        
+        public IOrderRepository Order { get; private set; }
+
+        public IReviewRepository Review { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -27,6 +29,8 @@ namespace PharmacyWebApp.DataAccess.Repository
             Brand = new BrandRepository(_context);
             ShopCart = new ShopCartRepository(_context);
             Category = new CategoryRepository(_context);
+            Order = new OrderRepository(_context);
+            Review = new ReviewRepository(_context);
         }
 
         
@@ -36,7 +40,7 @@ namespace PharmacyWebApp.DataAccess.Repository
             _context.Dispose();
         }
 
-        public int SaveChanges()
+        public int Save()
         {
             return _context.SaveChanges();
         }
