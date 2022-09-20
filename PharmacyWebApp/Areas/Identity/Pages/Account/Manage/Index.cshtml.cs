@@ -166,25 +166,22 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
                 await _userManager.UpdateAsync(user);
 
             }
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
+
             if (Request.Form.Files.Count > 0)
             {
                 var file = Request.Form.Files.FirstOrDefault();
+
+                //check file size and extension
+
                 using (var dataStream = new MemoryStream())
                 {
                     await file.CopyToAsync(dataStream);
                     user.ProfilePicture = dataStream.ToArray();
                 }
+
                 await _userManager.UpdateAsync(user);
             }
+
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
