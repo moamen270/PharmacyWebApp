@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using PharmacyWebApp.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+
+        <ul class="navbar-nav">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                @if(UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+                {
+                <li class="nav-item ml-5 ">
+                    <img id="profilePicture" class="avatar rounded-circle" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))" />
+                </li>
+                }
+                else
+                {
+                     <li class="nav-item ml-5 ">
+                         <img id="profilePicture" class="avatar rounded-circle border border-2 p-0  " src="~/images/team/male_avatar.jpg" />
+                     </li>            
+                }               
+                <li class="nav-item dropdown onclick">
+                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" >@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</a>
+                  <ul class="dropdown-menu" role="menu">
+                      <li>
+                            <a id="manage" class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile Setting</a>                    
+                      </li>
+                      <li>
+                          <div class="dropdown-divider"></div>
+                      </li>
+                      <li>
+                          <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home" , new { area="" })">
+                              <button id="logout" type="submit" class="dropdown-item text-dark">Logout</button>
+                          </form>
+                      </li>    
+                    
+                  </ul>
+                </li>
+                                       
+            }
+            else
+            {
+            <li class="nav-item">
+                <a class=" btn btn-sm btn-outline-primary ml-lg-4" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>        
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Donate" asp-action="Index" class="btn btn-sm btn-primary ml-lg-4">Donate</a>
+            </li>
+            }
+        </ul>
+
+      
