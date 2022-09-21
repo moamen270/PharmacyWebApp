@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyWebApp", "PharmacyWebApp\PharmacyWebApp.csproj", "{2FD81194-212B-4E71-91C9-3DDCA8F3ADFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyWebApp.DataAccess", "PharmacyWebApp.DataAccess\PharmacyWebApp.DataAccess.csproj", "{B09CD402-3C63-44F5-9BE2-787E1FB657CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyWebApp.DataAccess", "PharmacyWebApp.DataAccess\PharmacyWebApp.DataAccess.csproj", "{B09CD402-3C63-44F5-9BE2-787E1FB657CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyWebApp.Models", "PharmacyWebApp.Models\PharmacyWebApp.Models.csproj", "{6EE24DE3-E920-4DDF-B2DE-9A0B5BF3B13A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyWebApp.Models", "PharmacyWebApp.Models\PharmacyWebApp.Models.csproj", "{6EE24DE3-E920-4DDF-B2DE-9A0B5BF3B13A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
