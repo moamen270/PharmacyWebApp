@@ -19,57 +19,36 @@ namespace PharmacyWebApp.Controllers
             IEnumerable<Brand> obj = _unitOfWork.Brand.GetAll();
             return View(obj);
         }
-        //GET
+       
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create()
         {
-            return View();
-        }
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Brand obj = null)
-        {
-            if(obj == null)
-            obj = new Brand();
-            _unitOfWork.Brand.Add(obj);
+            
+            
+            _unitOfWork.Brand.Add(new Brand());
             _unitOfWork.Save();
             TempData["success"] = "Brand created successfully";
-            return View(obj);
-        }
-
-
-
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _unitOfWork.Brand.GetFirstOrDefault(u => u.Id == id);
-
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            return View(obj);
-        }
-
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int id)
-        {
-            var obj = _unitOfWork.Brand.GetFirstOrDefault(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Brand.Delete(obj);
-            _unitOfWork.Save();
-            TempData["success"] = "Brand deleted successfully";
             return RedirectToAction("Index");
         }
+
+
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var brand = _unitOfWork.Brand.GetFirstOrDefault(item => item.Id == id);
+            if (brand == null)
+                return Json(new { success = false, message = "Error While Deleting" });
+
+            _unitOfWork.Brand.Delete(brand);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "brand Deleted Successfully" });
+
+        }
+
 
 
         public IActionResult Edit(int? id)
@@ -99,8 +78,20 @@ namespace PharmacyWebApp.Controllers
             return View(obj);
         }
 
+        [HttpPost]
+        public IActionResult Createapi()
+        {
 
+            _unitOfWork.Brand.Add(new Brand());
+            _unitOfWork.Save();
+            TempData["success"] = "Brand created successfully";
+            return View("Index");
 
+            
+
+        }
+
+       
 
 
 

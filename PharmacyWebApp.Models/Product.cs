@@ -12,13 +12,14 @@ namespace PharmacyWebApp.Models
         public double ListPrice { get; set; } = 1;
         [Range(1, 1000)]
         public double Price { get; set; } = 1;
-        public int BrandId { get; set; }
+        public byte[]? ProductPicture { get; set; }
+        public int? BrandId { get; set; }
         [ValidateNever]
-        public Brand Brand { get; set; }
-        public int CategoryId { get; set; }
+        public Brand? Brand { get; set; }
+        public int? CategoryId { get; set; }
         [ValidateNever]
-        public Category Category { get; set; }
-        public IReadOnlyCollection<Review> ReviewsList { get; set; }
+        public Category? Category { get; set; }
+        public IReadOnlyCollection<Review>? ReviewsList { get; set; }
 
     }
 }

@@ -1,0 +1,57 @@
+@using PharmacyWebApp.Models
+@model Brand
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+	<input asp-for="Id" hidden />
+	
+	<div class="row col-12">
+		<div class="col-6">
+			<div class="border p-3 mt-4 row">
+				<div class="col-12 pb-2">
+					<h2 class="text-primary">Update  Brand</h2>
+					<hr />
+				</div>
+				<div asp-validation-summary="All"></div>
+				<div class="mb-3">
+					<label asp-for="Name"></label>
+					<input asp-for="Name" class="form-control" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>			
+				<div class="col-12">			
+						<button type="submit" class="btn btn-primary" style="width:150px">Update</button>			
+					<a asp-controller="Brand" asp-action="Index" class="btn btn-secondary" style="width:150px">
+						Back
+					</a>
+				</div>
+
+			</div>
+		</div>		
+		<div class="col-6">            
+        </div>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+	<partial name="_ValidationScriptsPartial" />
+	}
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      toolbar_mode: 'floating',
+   });
+  
+	function ValidateInput(){
+		if(document.getElementById("uploadBox").value==""){
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Please upload an Image!',
+			});
+			return false;
+		}
+		return true;
+	}
+</script>
+}
