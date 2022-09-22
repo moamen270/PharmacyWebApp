@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PharmacyWebApp.DataAccess;
 
@@ -11,9 +12,10 @@ using PharmacyWebApp.DataAccess;
 namespace PharmacyWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220921204515_AddProductPicture")]
+    partial class AddProductPicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,7 +258,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Category", b =>
@@ -273,7 +275,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.CreditCard", b =>
@@ -300,7 +302,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CreditCards", (string)null);
+                    b.ToTable("CreditCards");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Order", b =>
@@ -337,7 +339,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Product", b =>
@@ -377,7 +379,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Review", b =>
@@ -410,7 +412,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.ShopCart", b =>
@@ -437,7 +439,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShopCarts", (string)null);
+                    b.ToTable("ShopCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,4 +1,5 @@
-﻿using PharmacyWebApp.DataAccess.Repository.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using PharmacyWebApp.DataAccess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,17 @@ namespace PharmacyWebApp.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected ApplicationDbContext _context;
+        private ApplicationDbContext _context;
+        internal DbSet<T> dbSet;
 
         public Repository(ApplicationDbContext context)
         {
             _context = context;
+            dbSet = _context.Set<T>();
         }
         public T Add(T entity)
         {
-             _context.Add(entity);
+            dbSet.Add(entity);
             return entity;
         }
 
@@ -29,37 +32,37 @@ namespace PharmacyWebApp.DataAccess.Repository
 
         public int Count()
         {
-            return _context.Set<T>().Count();
+            return dbSet.Count();
         }
 
         public int Count(System.Linq.Expressions.Expression<Func<T, bool>> filter)
         {
-            return _context.Set<T>().Count(filter);
+            return dbSet.Count(filter);
         }
 
         public void Delete(T entity)
         {
-            _context.Set<T>().Remove(entity);
+            dbSet.Remove(entity);
         }
 
         public void DeleteRange(IEnumerable<T> entities)
         {
-            _context.Set<T>().RemoveRange(entities);
+            dbSet.RemoveRange(entities);
         }
 
         public T Get(int id)
         {
-            return _context.Set<T>().Find(id);
+            return dbSet.Find(id);
         }
 
         public IEnumerable<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return dbSet.ToList();
         }
 
         public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>> filter)
         {
-            return _context.Set<T>().FirstOrDefault(filter);
+            return dbSet.FirstOrDefault(filter);
         }
 
         public T Update(T entity)
