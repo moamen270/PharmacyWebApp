@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Models;
+using PharmacyWebApp.Models.ViewModels;
 using System.Diagnostics;
+
 
 namespace PharmacyWebApp.Controllers
 {
@@ -52,27 +55,41 @@ namespace PharmacyWebApp.Controllers
 
         public IActionResult Edit(int? id)
         {
-            var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
-
-            if (obj == null)
+            ProductVM productVM = new ProductVM
             {
-                return NotFound();
-            }
-
-            return View(obj);
+                Product = new(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+                BrandList = _unitOfWork.Brand.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
+            productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+            return View(productVM);
         }
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Product obj)
+        public IActionResult Edit(ProductVM obj)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction("Index");
+                
+                if (obj.Product != null)
+                {                
+                   
+                    _unitOfWork.Product.Update(obj.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product updated successfully";
+                    return RedirectToAction("Index");
+                }
+                
             }
             return View(obj);
         }

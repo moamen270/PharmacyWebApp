@@ -10,7 +10,7 @@ namespace PharmacyWebApp.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         internal DbSet<T> dbSet;
 
         public Repository(ApplicationDbContext context)
