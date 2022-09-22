@@ -1905,11 +1905,11 @@ pre .copy-to-clipboard {
     }
 
 
-.ProfilePicture {
-    width: 250px;
-    height: 250px;        
+.profile-picture {
+    width: 350px;
+    height: 350px;
     object-fit: cover;
-   
+
 }
 
 .avatar {
@@ -1917,4 +1917,8 @@ pre .copy-to-clipboard {
     height: 50px;
     object-fit: cover
 }
+
+
+
+
 /*# sourceMappingURL=style.css.map */

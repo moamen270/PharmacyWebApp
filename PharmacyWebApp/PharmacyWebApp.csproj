@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\slider\" />
+    <Folder Include="wwwroot\sass\" />
   </ItemGroup>
 
   <ItemGroup>
