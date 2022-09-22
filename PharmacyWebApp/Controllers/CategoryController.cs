@@ -19,56 +19,28 @@ namespace PharmacyWebApp.Controllers
             IEnumerable<Category> obj = _unitOfWork.Category.GetAll();
             return View(obj);
         }
-        //GET
+        //POST
+        [HttpPost]
         public IActionResult Create()
         {
-            return View();
-        }
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Category obj = null)
-        {
-            if (obj == null)
-                obj = new Category();
-            _unitOfWork.Category.Add(obj);
+            _unitOfWork.Category.Add(new Category());
             _unitOfWork.Save();
-            TempData["success"] = "Category created successfully";
-            return View(obj);
+
+            return Json(new { success = true, message = "Create Created Successfully" });
         }
 
-
-
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            var Category = _unitOfWork.Category.GetFirstOrDefault(item => item.Id == id);
+            if (Category == null)
+                return Json(new { success = false, message = "Error While Deleting" });
 
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            return View(obj);
-        }
-
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
-        {
-            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Category.Delete(obj);
+            _unitOfWork.Category.Delete(Category);
             _unitOfWork.Save();
-            TempData["success"] = "Category deleted successfully";
-            return RedirectToAction("Index");
+
+            return Json(new { success = true, message = "Brand Deleted Successfully" });
+
         }
 
 
@@ -92,6 +64,7 @@ namespace PharmacyWebApp.Controllers
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Update(obj);
+
                 _unitOfWork.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
@@ -100,7 +73,10 @@ namespace PharmacyWebApp.Controllers
         }
 
 
+  
 
+
+ 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
