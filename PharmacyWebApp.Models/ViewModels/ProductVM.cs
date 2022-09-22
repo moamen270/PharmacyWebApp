@@ -6,17 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace PharmacyWebApp.Models.ViewModels
 {
     public class ProductVM
-    {/*
+    {
         public Product Product { get; set; }
         [ValidateNever]
-        public IEnumerable<Brand> BrandsList { get; set; }
+        public IEnumerable<SelectListItem> BrandList { get; set; }
         [ValidateNever]
-        public IEnumerable<Category> CategoriesList { get; set; }
-    */
+        public IEnumerable<SelectListItem> CategoryList { get; set; }
+
     }
 
 }
