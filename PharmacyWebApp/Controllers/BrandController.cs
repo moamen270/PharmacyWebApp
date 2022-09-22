@@ -22,15 +22,12 @@ namespace PharmacyWebApp.Controllers
        
         //POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create()
         {
-            
-            
             _unitOfWork.Brand.Add(new Brand());
             _unitOfWork.Save();
-            TempData["success"] = "Brand created successfully";
-            return RedirectToAction("Index");
+
+            return Json(new { success = true, message = "Brand Created Successfully" });
         }
 
 
@@ -45,7 +42,7 @@ namespace PharmacyWebApp.Controllers
             _unitOfWork.Brand.Delete(brand);
             _unitOfWork.Save();
 
-            return Json(new { success = true, message = "brand Deleted Successfully" });
+            return Json(new { success = true, message = "Brand Deleted Successfully" });
 
         }
 
@@ -77,8 +74,6 @@ namespace PharmacyWebApp.Controllers
             }
             return View(obj);
         }
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
