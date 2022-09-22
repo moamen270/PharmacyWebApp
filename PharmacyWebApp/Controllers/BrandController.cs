@@ -78,23 +78,6 @@ namespace PharmacyWebApp.Controllers
             return View(obj);
         }
 
-        [HttpPost]
-        public IActionResult Createapi()
-        {
-
-            _unitOfWork.Brand.Add(new Brand());
-            _unitOfWork.Save();
-            TempData["success"] = "Brand created successfully";
-            return View("Index");
-
-            
-
-        }
-
-       
-
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
