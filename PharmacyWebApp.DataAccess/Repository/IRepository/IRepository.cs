@@ -11,7 +11,7 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
     {
         T Get(int id);
         IEnumerable<T> GetAll();
-        T GetFirstOrDefault(Expression<Func<T,bool>> filter);
+        T GetFirstOrDefault(Expression<Func<T,bool>>? filter=null);
         T Add(T entity);
         IEnumerable<T> AddRange(IEnumerable<T> entities);
         T Update(T entity);

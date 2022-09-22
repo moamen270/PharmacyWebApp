@@ -8,7 +8,7 @@
             <h2 class="text-primary">Product List</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Product" asp-action="Create" class="btn btn-primary" >
+            <a onClick=Create("/Product/Create") class="btn btn-primary">
                 <i class="bi bi-plus-circle-fill"></i> &nbsp; New Product</a>
         </div>
     </div>
@@ -43,7 +43,7 @@
             </th>
             <th width=20%>
                 <div class="w-75 btn-group" role="group">
-                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                        <a onClick=Delete("/Product/Delete/@obj.Id") class="btn btn-primary mx-2">
                         <i class="bi bi-trash3"></i>Delete</a>
                 </div>
             </th>
@@ -51,3 +51,9 @@
         }
     </tbody>
 </table>
+
+
+
+@section Scripts{
+    <script src="~/js/Product.js"></script>
+}

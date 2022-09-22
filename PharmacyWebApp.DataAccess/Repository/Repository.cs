@@ -60,8 +60,13 @@ namespace PharmacyWebApp.DataAccess.Repository
             return dbSet.ToList();
         }
 
-        public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>> filter)
-        {
+        public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>>? filter=null)
+        {   
+            if (filter == null)
+            {
+                return dbSet.FirstOrDefault();
+            }
+
             return dbSet.FirstOrDefault(filter);
         }
 
