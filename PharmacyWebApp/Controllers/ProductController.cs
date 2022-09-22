@@ -19,56 +19,34 @@ namespace PharmacyWebApp.Controllers
             IEnumerable<Product> obj = _unitOfWork.Product.GetAll();
             return View(obj);
         }
-        //GET
+
+        //POST
+        [HttpPost]
         public IActionResult Create()
         {
-            return View();
-        }
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Product obj = null)
-        {
-            if (obj == null)
-                obj = new Product();
-            _unitOfWork.Product.Add(obj);
+            _unitOfWork.Product.Add(new Product
+            {
+                CategoryId = _unitOfWork.Category.GetFirstOrDefault().Id,
+                BrandId = _unitOfWork.Brand.GetFirstOrDefault().Id
+            }) ; 
             _unitOfWork.Save();
-            TempData["success"] = "Product created successfully";
-            return View(obj);
+            return Json(new { success = true, message = "Product Created Successfully" });
         }
 
 
-
+        //POST
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
-
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            return View(obj);
-        }
-
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
-        {
             var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
-                return NotFound();
+                return Json(new { success = true, message = "Faild" });
             }
             _unitOfWork.Product.Delete(obj);
             _unitOfWork.Save();
             TempData["success"] = "Product deleted successfully";
-            return RedirectToAction("Index");
+            return Json(new { success = true, message = "Product Deleted Successfully" });
         }
 
 
