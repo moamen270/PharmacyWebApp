@@ -15,10 +15,10 @@ function Delete(url) {
                 success: function (data) {
                     if (data.success) {
                         location.reload();
-                        toastr.success(data.message);
+                        
                     }
                     else {
-                        toastr.error(data.message);
+                       
                     }
                 }
             })
@@ -44,10 +44,10 @@ function Create(url) {
                 success: function (data) {
                     if (data.success) {
                         location.reload();
-                        toastr.success(data.message);
+                     
                     }
                     else {
-                        toastr.error(data.message);
+                       
                     }
                 }
             })
