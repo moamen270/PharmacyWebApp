@@ -5,9 +5,10 @@
     ViewData["ActivePage"] = ManageNavPages.Email;
 }
 
-<h3>@ViewData["Title"]</h3>
+<div class="col-8">
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
+    <div class="col-1"></div>
     <div class="col-md-6">
         <form id="email-form" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
@@ -38,7 +39,7 @@
         </form>
     </div>
 </div>
-
+</div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

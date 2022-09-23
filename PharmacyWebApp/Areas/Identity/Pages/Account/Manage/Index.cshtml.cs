@@ -58,6 +58,7 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
             [Required]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
+           
             [Display(Name = "StreetAddress")]
             public string StreetAddress { get; set; }
             [Display(Name = "City")]
@@ -83,6 +84,7 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var email = await _userManager.GetEmailAsync(user);
 
             Username = userName;
 
@@ -96,7 +98,7 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
                 PostalCode = user.PostalCode,
                 PhoneNumber = phoneNumber,
                 ProfilePicture = user.ProfilePicture,
-               
+                     
             };
         }
 
@@ -133,7 +135,6 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
             var City = user.City;
             var State = user.State;
             var PostalCode = user.PostalCode;
-          
 
             if (Input.FirstName != FirstName)
             {
@@ -163,6 +164,13 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
             if (Input.PostalCode != PostalCode)
             {
                 user.PostalCode = Input.PostalCode;
+                await _userManager.UpdateAsync(user);
+
+            }
+         
+            if (Input.PhoneNumber != phoneNumber)
+            {
+                user.PhoneNumber = Input.PhoneNumber;
                 await _userManager.UpdateAsync(user);
 
             }
