@@ -7,39 +7,32 @@
         <title>@ViewData["Title"] - PharmacyWebApp</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/PharmacyWebApp.styles.css" asp-append-version="true" />
-        <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+
+
+        <link rel="stylesheet" href="~/plugins/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
        
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+       
 
         <!-- Libraries Stylesheet -->
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+        <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
         <!-- themefy-icon -->
-        <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
-        <!-- slick slider -->
-        <link rel="stylesheet" href="plugins/slick/slick.css">
-        <!-- venobox popup -->
-        <link rel="stylesheet" href="plugins/Venobox/venobox.css">
-        <!-- aos -->
-        <link rel="stylesheet" href="plugins/aos/aos.css">
+        <link rel="stylesheet" href="~/plugins/themify-icons/themify-icons.css">     
         <!-- Main Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="~/css/style.css" rel="stylesheet">
 
         <!--Favicon-->
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="~/images/favicon.ico" type="image/x-icon">
     </head>
     <body>
         <header class="sticky-top navigation bg-white">
             <div class=container>
                 <nav class="navbar navbar-expand-lg navbar-light  ">
-                   
                     <div class="collapse navbar-collapse text-center" id=navigation>
                         <ul class="navbar-nav  align-items-center">
                             <li>
@@ -77,9 +70,6 @@
         </header>
         <div class="container">
             <main role="main" class="pb-3">
-
-              
-
                 @RenderBody()
             </main>
         </div>
@@ -113,35 +103,20 @@
                 </div>*@
             </div>
         </footer>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="plugins/jQuery/jquery.min.js"></script>        
-        <script src="plugins/masonry/masonry.min.js"></script>
-        <script src="plugins/clipboard/clipboard.min.js"></script>
-        <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
-        <script src="plugins/jQuery/jquery.min.js"></script>
-        <script src="./plugins/jquery-steps/build/jquery.steps.min.js"></script>
+        
+        <script src="~/plugins/jQuery/jquery.min.js"></script>        
+        <script src="~/plugins/masonry/masonry.min.js"></script>
+        <script src="~/plugins/clipboard/clipboard.min.js"></script>
+        <script src="~/plugins/match-height/jquery.matchHeight-min.js"></script>
+        <script src="~/plugins/jquery-steps/build/jquery.steps.min.js"></script>
         <!-- Bootstrap JS -->
-        <script src="plugins/bootstrap/bootstrap.min.js"></script>
-        <!-- slick slider -->
-        <script src="plugins/slick/slick.min.js"></script>
-        <!-- venobox -->
-        <script src="plugins/Venobox/venobox.min.js"></script>
-        <!-- aos -->
-        <script src="plugins/aos/aos.js"></script>
+        <script src="~/plugins/bootstrap/bootstrap.min.js"></script>
+        
         <!-- Main Script -->
-        <script src="js/script.js"></script>
+        <script src="~/js/script.js"></script>
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
         @await RenderSectionAsync("Scripts", required: false)
