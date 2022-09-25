@@ -14,17 +14,17 @@ namespace PharmacyWebApp.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Brand> obj = _unitOfWork.Brand.GetAll();
+            IEnumerable<Brand> obj = await _unitOfWork.Brand.GetAllAsync();
             return View(obj);
         }
        
         //POST
         [HttpPost]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            _unitOfWork.Brand.Add(new Brand());
+            await _unitOfWork.Brand.AddAsync(new Brand());
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Brand Created Successfully" });
@@ -33,9 +33,9 @@ namespace PharmacyWebApp.Controllers
 
 
         [HttpDelete]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            var brand = _unitOfWork.Brand.GetFirstOrDefault(item => item.Id == id);
+            var brand = await _unitOfWork.Brand.GetFirstOrDefaultAsync(item => item.Id == id);
             if (brand == null)
                 return Json(new { success = false, message = "Error While Deleting" });
 
@@ -48,9 +48,9 @@ namespace PharmacyWebApp.Controllers
 
 
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {           
-            var obj = _unitOfWork.Brand.GetFirstOrDefault(u => u.Id == id);
+            var obj = await _unitOfWork.Brand.GetFirstOrDefaultAsync(u => u.Id == id);
 
             if (obj == null)
             {

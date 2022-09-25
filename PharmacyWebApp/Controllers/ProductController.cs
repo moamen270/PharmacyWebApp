@@ -18,20 +18,20 @@ namespace PharmacyWebApp.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Product> obj = _unitOfWork.Product.GetAll();
+            IEnumerable<Product> obj = await _unitOfWork.Product.GetAllAsync();
             return View(obj);
         }
 
         //POST
         [HttpPost]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            _unitOfWork.Product.Add(new Product
+            await _unitOfWork.Product.AddAsync(new Product
             {
-                CategoryId = _unitOfWork.Category.GetFirstOrDefault().Id,
-                BrandId = _unitOfWork.Brand.GetFirstOrDefault().Id
+                CategoryId = ( await _unitOfWork.Category.GetFirstOrDefaultAsync()).Id,
+                BrandId = (await _unitOfWork.Brand.GetFirstOrDefaultAsync()).Id
             }) ; 
             _unitOfWork.Save();
             return Json(new { success = true, message = "Product Created Successfully" });
@@ -40,9 +40,9 @@ namespace PharmacyWebApp.Controllers
 
         //POST
         [HttpDelete]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+            var obj = await _unitOfWork.Product.GetFirstOrDefaultAsync(u => u.Id == id);
             if (obj == null)
             {
                 return Json(new { success = true, message = "Faild" });
@@ -54,23 +54,23 @@ namespace PharmacyWebApp.Controllers
         }
 
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             ProductVM productVM = new ProductVM
             {
                 Product = new(),
-                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                CategoryList = (await _unitOfWork.Category.GetAllAsync()).Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
                 }),
-                BrandList = _unitOfWork.Brand.GetAll().Select(i => new SelectListItem
+                BrandList = (await _unitOfWork.Brand.GetAllAsync()).Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
                 })
             };
-            productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+            productVM.Product = await _unitOfWork.Product.GetFirstOrDefaultAsync(u => u.Id == id);
             return View(productVM);
         }
 

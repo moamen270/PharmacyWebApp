@@ -14,25 +14,25 @@ namespace PharmacyWebApp.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Category> obj = _unitOfWork.Category.GetAll();
+             IEnumerable<Category> obj = await _unitOfWork.Category.GetAllAsync();
             return View(obj);
         }
         //POST
         [HttpPost]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            _unitOfWork.Category.Add(new Category());
+            await _unitOfWork.Category.AddAsync(new Category());
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Create Created Successfully" });
         }
 
         [HttpDelete]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            var Category = _unitOfWork.Category.GetFirstOrDefault(item => item.Id == id);
+            var Category = await _unitOfWork.Category.GetFirstOrDefaultAsync(item => item.Id == id);
             if (Category == null)
                 return Json(new { success = false, message = "Error While Deleting" });
 
@@ -44,9 +44,9 @@ namespace PharmacyWebApp.Controllers
         }
 
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            var obj = await _unitOfWork.Category.GetFirstOrDefaultAsync(u => u.Id == id);
 
             if (obj == null)
             {
