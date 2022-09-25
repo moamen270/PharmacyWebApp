@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Models;
@@ -80,7 +81,22 @@ namespace PharmacyWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                if (Request.Form.Files.Count > 0)
+                {
+                    var file = Request.Form.Files.FirstOrDefault();
+
+                    //check file size and extension
+
+                    using (var dataStream = new MemoryStream())
+                    {
+                         file.CopyToAsync(dataStream);
+                        obj.Product.ProductPicture = dataStream.ToArray();
+                    }
+
+                    _unitOfWork.Product.Update(obj.Product);
+                    _unitOfWork.Save();
+                }
+
                 if (obj.Product != null)
                 {                
                    

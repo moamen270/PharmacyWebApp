@@ -1,38 +1,62 @@
 @using PharmacyWebApp.Models.ViewModels
 @model ProductVM
 
+
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
 	<input asp-for="Product.Id" hidden />
 	
-	<div class="row col-12">
-		<div class="col-6">
+	<div class="row col-10">
+		<div class="col-12">
 			<div class="border p-3 mt-4 row">
 				<div class="col-12 pb-2">
 					<h2 class="text-primary">Update  Product</h2>
 					<hr />
 				</div>
 				<div asp-validation-summary="All"></div>
-				<div class="mb-3">
+				<div class="mb-3 col-8">
 					<label asp-for="Product.Name"></label>
 					<input asp-for="Product.Name" class="form-control" />
 					<span asp-validation-for="Product.Name" class="text-danger"></span>
 				</div>
-				<div class="mb-3">
+				<div class="mb-3 col-8">
 					<label asp-for="Product.Description"></label>
 					<textarea asp-for="Product.Description" rows="3" class="form-control"></textarea>
 					<span asp-validation-for="Product.Description" class="text-danger"></span>
-				</div>				
-				<div class="mb-3 col-6">
+				</div>
+				@if (Model.Product.ProductPicture != null)
+                {
+					<img id="ProductPicture" alt="profile" class="product-picture rounded-top col-6 " src="data:image/*;base64,@(Convert.ToBase64String(Model.Product.ProductPicture))" />
+                }
+                else
+                {
+					<img id="ProductPicture" alt="profile" class="product-picture rounded-top" src="~/images/team/male_avatar.jpg" />
+                }
+				<div class="mb-3 custom-file mt-2 col-8">
+					<label class="custom-file-label" asp-for="Product.ProductPicture"></label>
+					<input type="file"
+						   accept="image/*"
+						   asp-for="Product.ProductPicture"
+						   class="form-control"
+						   onchange="document.getElementById('ProductPicture').src = window.URL.createObjectURL(this.files[0])" />
+
+					<span asp-validation-for="Product.ProductPicture" class="text-danger"></span>
+				<div class="mb-3 col-8">
 					<label asp-for="Product.ListPrice"></label>
 					<input asp-for="Product.ListPrice" class="form-control" />
 					<span asp-validation-for="Product.ListPrice" class="text-danger"></span>
 				</div>
-				<div class="mb-3 col-6">
+				<div class="mb-3 col-8">
 					<label asp-for="Product.Price"></label>
 					<input asp-for="Product.Price" class="form-control" />
 					<span asp-validation-for="Product.Price" class="text-danger"></span>
-				</div>				
-				<div class="mb-3 col-6">
+				</div>
+
+				<div class="mb-3 col-8">
 					<label asp-for="Product.CategoryId"></label>
 					<select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-select">
 						<option disabled selected>--Select Category--</option>
@@ -40,17 +64,20 @@
 					<span asp-validation-for="Product.CategoryId" class="text-danger"></span>
 				</div>
 
-				<div class="mb-3 col-6">
+				<div class="mb-3 col-8">
 					<label asp-for="Product.BrandId"></label>
 					<select asp-for="Product.BrandId" asp-items="@Model.BrandList" class="form-select">
 						<option disabled selected>--Select Brand--</option>
 					</select>
 					<span asp-validation-for="Product.BrandId" class="text-danger"></span>
 				</div>
-
-
-				<div class="col-12">			
-						<button type="submit" class="btn btn-primary" style="width:150px">Update</button>			
+				<div class="col-12">
+					@if(Model.Product.Id !=0){
+						<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+					}else {
+						<button type="submit" onclick="return ValidateInput()" oncli class="btn btn-primary" style="width:150px">Update</button>
+					}
+								
 					<a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px">
 						Back
 					</a>
@@ -81,6 +108,7 @@
             </div>
         </div>*@
 	</div>
+</div>
 </form>
 
 @section Scripts{
@@ -88,6 +116,7 @@
 	<partial name="_ValidationScriptsPartial" />
 	}
 <script>
+
     tinymce.init({
       selector: 'textarea',
       plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',

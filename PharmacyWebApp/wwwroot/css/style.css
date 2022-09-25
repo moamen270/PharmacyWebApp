@@ -1933,6 +1933,11 @@ pre .copy-to-clipboard {
     object-fit: cover
 }
 
-
+.product-picture {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-left:6px;
+}
 
 /*# sourceMappingURL=style.css.map */
