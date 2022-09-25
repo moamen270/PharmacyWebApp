@@ -9,14 +9,17 @@
             {
                 @if(UserManager.GetUserAsync(User).Result.ProfilePicture != null)
                 {
-                <li class="nav-item  ">
-                    <img id="profilePicture" class="avatar rounded-circle" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))" />
+
+                <li class="nav-item ml-3 ">
+                    <img id="" class="avatar rounded-circle" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))" />
+
                 </li>
                 }
                 else
                 {
-                     <li class="nav-item  ">
-                         <img id="profilePicture" class="avatar rounded-circle border border-2 p-0  " src="~/images/team/male_avatar.jpg" />
+
+                     <li class="nav-item ml-3 ">
+                         <img id="" class="avatar rounded-circle border border-2 p-0  " src="~/images/team/male_avatar.jpg" />
                      </li>            
                 }               
                 <li class="nav-item dropdown onclick">
