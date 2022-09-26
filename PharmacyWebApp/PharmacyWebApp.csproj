@@ -45,6 +45,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PharmacyWebApp.DataAccess\PharmacyWebApp.DataAccess.csproj" />
     <ProjectReference Include="..\PharmacyWebApp.Models\PharmacyWebApp.Models.csproj" />
+    <ProjectReference Include="..\PharmacyWebApp.Utility\PharmacyWebApp.Utility.csproj" />
   </ItemGroup>
 
 </Project>
