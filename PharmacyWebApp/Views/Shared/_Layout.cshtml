@@ -1,4 +1,5 @@
-﻿
+﻿@using PharmacyWebApp.Utility
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -50,17 +51,20 @@
                                 <i class="bi bi-cart"></i> 
                             </a>
                         </li>
-                                                       
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
                             <li class="nav-item dropdown onclick"> <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Manage </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a class="dropdown-item" asp-controller="Manage" asp-action="Index">Dashboard</a></li>                    
                                     <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">Product</a></li>
                                     <li><a class="dropdown-item" asp-controller="Brand" asp-action="Index">Brand</a></li> 
                                     <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index">Manage Roles</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Users" asp-action="Index">Manage Users</a></li>
                                     <li><div class="dropdown-divider"></div></li>
                                 </ul>
                            </li>
-                           
+                        }
                         </ul>
                         <form class="form-inline search-wrapper d-none d-lg-block" class="search-wrapper" asp-controller="Search" asp-action="Index">
                             <input id="search-by" name="s" type="search" class="form-control" placeholder="Search here ...">
