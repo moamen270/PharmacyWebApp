@@ -11,10 +11,10 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
     {
         T Get(int id);
         Task<T> GetAsyce(int id);
-        IEnumerable<T> GetAll();
-        Task<IEnumerable<T>> GetAllAsync();
-        T GetFirstOrDefault(Expression<Func<T,bool>>? filter=null);
-        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter=null);
+        IEnumerable<T> GetAll( string[]? include = null);
+        Task<IEnumerable<T>> GetAllAsync(string[]? include = null);
+        T GetFirstOrDefault(Expression<Func<T,bool>>? filter = null, string[]? include = null);
+        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter=null, string[]? include = null);
         T Add(T entity);
         Task<T> AddAsync(T entity);
         IEnumerable<T> AddRange(IEnumerable<T> entities);

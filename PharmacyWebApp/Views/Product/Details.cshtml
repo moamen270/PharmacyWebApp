@@ -1,0 +1,81 @@
+﻿@using PharmacyWebApp.Models
+@model Product
+<div class="row col-10">
+	<div class="col-12">
+		<div class="border p-3 mt-4 row">
+			<div class="col-12 pb-2">
+					<h2 class="text-primary">Product Details</h2>
+					<hr />
+			</div>
+			<div class="row col-12">
+				
+				<div class="col-6">
+					<div class="mb-3 col-12">
+						<h3 >Name: @Model.Name</h3>										
+					</div>
+					<div class="mb-3 col-12">					
+						<h3> Description:  @Model.Description</h3>
+						
+					</div>																
+					<div class="mb-3 col-8">
+						<h3 >ListPrice: @Model.ListPrice</h3>
+					</div>
+					<div class="mb-3 col-8">
+						<h3> Price: @Model.Price</h3>
+					</div>
+					<div class="mb-3 col-8">
+						<h3>Category: @Model.Category.Name</h3>
+					</div>
+					<div class="mb-3 col-8">
+						<h3 > Brand: @Model.Brand.Name</h3>		
+					</div>
+					<div class="col-12">			
+						<a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px">
+							Back
+						</a>
+					</div>
+				</div>
+				<div class="col-6">
+					@if (Model.ProductPicture != null)
+					{
+						<img id="ProductPicture" alt="profile" class="product-picture rounded-top  " src="data:image/*;base64,@(Convert.ToBase64String(Model.ProductPicture))" />
+					}
+					else
+					{
+						<img id="ProductPicture" alt="profile" class="product-picture rounded-top" src="~/images/team/male_avatar.jpg" />
+					}
+				</div>
+			</div>
+		</div>		
+		
+	</div>
+	@*<form  class="   " method="post" asp-action="AddReview">
+		<div class="row">
+			<div class="mb-3 col-12">
+				<label asp-for="ReviewsList"></label>
+				<textarea asp-for="Product.Description" rows="3" class="form-control"></textarea>
+				<span asp-validation-for="Product.Description" class="text-danger"></span>
+			</div>
+						
+			<div class="mb-3 col-12">
+				<label asp-for="Product.ListPrice"></label>
+				<input asp-for="Product.ListPrice" class="form-control" />
+				<span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+			</div>
+		</div>
+	</>
+	</form>
+	@foreach(var item in Model.ReviewsList)
+	{
+		<div class="row">
+			<h5>
+				Rate : @item.Rate
+			</h5>
+			<h5>
+				Comment @item.Comment
+			</h5>
+			</div>
+	}*@
+</div>
+
+
