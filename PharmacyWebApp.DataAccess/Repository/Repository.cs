@@ -51,26 +51,47 @@ namespace PharmacyWebApp.DataAccess.Repository
 
         public T Get(int id)
         {
+
             return _context.Set<T>().Find(id);
+            
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string[]? include = null)
         {
-            return _context.Set<T>().ToList();
+            IQueryable<T> result = _context.Set<T>();
+            if(include != null)
+                foreach(var item in include)
+                {
+                    result = result.Include(item);
+                }
+            return result.ToList();
         }
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync( string[]? include = null)
         {
-            return await _context.Set<T>().ToListAsync();
+            IQueryable<T> result = _context.Set<T>();
+            if(include != null)
+                foreach(var item in include)
+                {
+                    result = result.Include(item);
+                }
+            return await result.ToListAsync();
         }
 
-        public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>>? filter=null)
-        {   
-            if (filter == null)
+        public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>>? filter=null, string[]? include = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            if (filter != null)
+                query = query.Where(filter);
+            else
+                query.FirstOrDefault();
+            if (include != null)
             {
-                return _context.Set<T>().FirstOrDefault();
+                foreach (var item in include)
+                {
+                    query = query.Include(item);
+                }
             }
-
-            return _context.Set<T>().FirstOrDefault(filter);
+            return query.FirstOrDefault();
         }
 
         public T Update(T entity)
@@ -84,15 +105,19 @@ namespace PharmacyWebApp.DataAccess.Repository
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter = null)
+        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter = null, string[]? include = null)
         {
-
-            if (filter == null)
+            IQueryable<T> query = _context.Set<T>();
+            if (filter != null)
+                query = query.Where(filter);                       
+            if (include != null)
             {
-                return await _context.Set<T>().FirstOrDefaultAsync();
+                foreach (var item in include)
+                {
+                    query = query.Include(item);
+                }
             }
-
-            return await _context.Set<T>().FirstOrDefaultAsync(filter);
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<T> AddAsync(T entity)

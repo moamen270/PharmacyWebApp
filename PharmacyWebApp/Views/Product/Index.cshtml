@@ -38,6 +38,9 @@
             <th>
                 Delete
             </th>
+            <th>
+                Details
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -53,22 +56,28 @@
                     @obj.Price
                 </th>
                 <th width=20%>
-                    @obj.Brand
+                    @obj.Brand.Name
                 </th>
                 <th width=20%>
-                    @obj.Category
+                    @obj.Category.Name
                 </th>
 
-            <th width=20%>
+            <th width=15%>
                 <div class="w-75 btn-group" role="group">
                     <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
                         <i class="bi bi-pencil-square"></i>Edit</a>
                 </div>
             </th>
-            <th width=20%>
+            <th width=15%>
                 <div class="w-75 btn-group" role="group">
                         <a onClick=Delete("/Product/Delete/@obj.Id") class="btn btn-primary mx-2">
                         <i class="bi bi-trash3"></i>Delete</a>
+                </div>
+            </th>
+            <th width=15%>
+                <div class="w-75 btn-group" role="group">
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                        <i class="bi bi-pencil-square"></i>Details</a>
                 </div>
             </th>
         </tr>

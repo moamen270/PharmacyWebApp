@@ -20,7 +20,7 @@ namespace PharmacyWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Product> obj = await _unitOfWork.Product.GetAllAsync();
+            IEnumerable<Product> obj = await _unitOfWork.Product.GetAllAsync(new string[]{ "Brand","Category"});
             return View(obj);
         }
 
@@ -77,39 +77,65 @@ namespace PharmacyWebApp.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(ProductVM obj)
+        public async Task<IActionResult> Edit(ProductVM obj)
         {
             if (ModelState.IsValid)
             {
+                Product product = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == obj.Product.Id);
                 if (Request.Form.Files.Count > 0)
                 {
-                    var file = Request.Form.Files.FirstOrDefault();
+                    var file =  Request.Form.Files.FirstOrDefault();
 
                     //check file size and extension
 
                     using (var dataStream = new MemoryStream())
                     {
-                         file.CopyToAsync(dataStream);
-                        obj.Product.ProductPicture = dataStream.ToArray();
+                         await file.CopyToAsync(dataStream);
+                        product.ProductPicture = dataStream.ToArray();
                     }
-
-                    _unitOfWork.Product.Update(obj.Product);
-                    _unitOfWork.Save();
+                    
                 }
-
-                if (obj.Product != null)
-                {                
-                   
-                    _unitOfWork.Product.Update(obj.Product);
+                if(product.Price != obj.Product.Price)
+                {
+                    product.Price = obj.Product.Price;
+                }
+                if (product.ListPrice != obj.Product.ListPrice)
+                {
+                    product.ListPrice = obj.Product.ListPrice;
+                }
+                if (product.Name != obj.Product.Name)
+                {
+                    product.Name = obj.Product.Name;
+                }
+                if (product.BrandId != obj.Product.BrandId)
+                {
+                    product.BrandId = obj.Product.BrandId;
+                }
+                if (product.Description != obj.Product.Description)
+                {
+                    product.Description = obj.Product.Description;
+                }
+                if (product.CategoryId != obj.Product.CategoryId)
+                {
+                    product.CategoryId = obj.Product.CategoryId;
+                }
+                    _unitOfWork.Product.Update(product);
                     _unitOfWork.Save();
                     TempData["success"] = "Product updated successfully";
                     return RedirectToAction("Index");
-                }
                 
             }
             return View(obj);
         }
 
+
+        public async Task<IActionResult> Details(int id )
+        {
+           Product obj = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == id ,new string[] {"Brand","Category", "ReviewsList" });
+            return View(obj);
+        }
+
+      
 
 
 
