@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PharmacyWebApp.Models.ViewModels
 {
-    public class RoleVM
+    public class RoleViewModel
     {
         public string RoleId { get; set; }
         public string RoleName { get; set; }
