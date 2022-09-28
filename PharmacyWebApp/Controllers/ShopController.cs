@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Models;
 using System.Diagnostics;
 
@@ -7,15 +8,18 @@ namespace PharmacyWebApp.Controllers
     public class ShopController : Controller
     {
         private readonly ILogger<ShopController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ShopController(ILogger<ShopController> logger)
+        public ShopController(ILogger<ShopController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _unitOfWork.Product.GetAllAsync();
+            return View(products);
         }
 
         

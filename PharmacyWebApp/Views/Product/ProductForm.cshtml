@@ -1,0 +1,122 @@
+@using PharmacyWebApp.Models.ViewModels
+@model ProductVM
+
+
+@{
+	ViewData["Title"] = @Model.Id > 0 ? "Edit" : "Create";
+	
+}
+
+<form method="post" asp-action="@(Model.Id > 0? "Edit" : "Create")" enctype="multipart/form-data">
+	<input asp-for="Id" hidden />
+	<div class=" my-4 row col-12">
+		<div class="col-10  ">
+			<h2 class="text-primary">@(Model.Id > 0? "Edit" : "Create")  Product</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="row  col-12">
+			<div class="col-6">
+				<div class="mb-3 col-12">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+				<div class="mb-3 col-12">
+					<label asp-for="Description"></label>
+					<textarea asp-for="Description" rows="3" class="form-control"></textarea>
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+						
+				<div class="mb-3 col-12">
+					<label asp-for="ListPrice"></label>
+					<input asp-for="ListPrice" class="form-control" />
+					<span asp-validation-for="ListPrice" class="text-danger"></span>
+				</div>
+				<div class="mb-3 col-12">
+					<label asp-for="Price"></label>
+					<input asp-for="Price" class="form-control" />
+					<span asp-validation-for="Price" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3 col-12">
+					<label asp-for="CategoryId"></label>
+					<select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))" class="form-control">
+						<option  >--Select Category--</option>
+					</select>
+					<span asp-validation-for="CategoryId" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3 col-12">
+					<label asp-for="BrandId"></label>
+					<select asp-for="BrandId" asp-items="@(new SelectList(Model.Brands,"Id","Name"))" class="form-control">
+						<option >--Select Brand--</option>
+					</select>
+					<span asp-validation-for="BrandId" class="text-danger"></span>
+				</div>
+						
+			</div>
+			<div class="col-6">
+				<div class="col-12">
+					@if (Model.ProductPicture != null)
+				{
+					<img id="ProductPicture" alt="profile" class="product-picture rounded-top" src="data:image/*;base64,@(Convert.ToBase64String(Model.ProductPicture))" />
+				}
+				else
+				{
+					<img id="ProductPicture" alt="profile" class="product-picture rounded-top" src="~/images/team/male_avatar.jpg" />
+				}
+				</div>						
+				<div class="custom-file m-3 col-6">
+					<label class="custom-file-label" asp-for="ProductPicture"></label>
+					<input type="file"
+							accept="image/*"
+							asp-for="ProductPicture"
+							class="custom-file-input"
+							onchange="document.getElementById('ProductPicture').src = window.URL.createObjectURL(this.files[0])"/>
+					<span asp-validation-for="ProductPicture" class="text-danger"></span>
+				</div>
+			</div>
+					
+			<div class="m-1">
+				
+					<button type="submit" class="btn btn-primary" style="width:150px">@(Model.Id > 0? "Edit" : "Create")</button>
+						
+				<a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px">
+					Back
+				</a>
+			</div>
+						
+				
+		</div>
+</div>		
+	
+
+</form>
+
+
+@section Scripts{
+	@{
+	<partial name="_ValidationScriptsPartial" />
+	}
+<script>
+
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      toolbar_mode: 'floating',
+   });
+  
+	function ValidateInput(){
+		if(document.getElementById("uploadBox").value==""){
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Please upload an Image!',
+			});
+			return false;
+		}
+		return true;
+	}
+</script>
+}
