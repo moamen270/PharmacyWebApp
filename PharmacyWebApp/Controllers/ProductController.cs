@@ -26,15 +26,63 @@ namespace PharmacyWebApp.Controllers
 
         //POST
         [HttpPost]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> QuickCreate()
         {
             await _unitOfWork.Product.AddAsync(new Product
             {
-                CategoryId = ( await _unitOfWork.Category.GetFirstOrDefaultAsync()).Id,
+                CategoryId = (await _unitOfWork.Category.GetFirstOrDefaultAsync()).Id,
                 BrandId = (await _unitOfWork.Brand.GetFirstOrDefaultAsync()).Id
             }) ; 
             _unitOfWork.Save();
             return Json(new { success = true, message = "Product Created Successfully" });
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            ProductVM viewModel = new ProductVM
+            {              
+                Categories = await _unitOfWork.Category.GetAllAsync(),
+                Brands = await _unitOfWork.Brand.GetAllAsync()
+            };
+
+            return View("ProductForm", viewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(ProductVM viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = await _unitOfWork.Category.GetAllAsync();
+                viewModel.Brands = await _unitOfWork.Brand.GetAllAsync();
+                return View(viewModel);
+            }
+            
+            if (Request.Form.Files.Count > 0)
+            {
+                var file = Request.Form.Files.FirstOrDefault();
+
+                //check file size and extension
+
+                using var dataStream = new MemoryStream();
+                await file.CopyToAsync(dataStream);
+                viewModel.ProductPicture = dataStream.ToArray();
+
+            }
+
+            Product product = new()
+            {
+                Name = viewModel.Name,
+                Description = viewModel.Description,
+                Price = viewModel.Price,
+                ListPrice = viewModel.ListPrice,
+                BrandId = viewModel.BrandId,
+                CategoryId = viewModel.CategoryId,
+                ProductPicture = viewModel.ProductPicture
+            };
+
+            await _unitOfWork.Product.AddAsync(product);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -56,76 +104,62 @@ namespace PharmacyWebApp.Controllers
 
         public async Task<IActionResult> Edit(int? id)
         {
-            ProductVM productVM = new ProductVM
+            var product = await _unitOfWork.Product.GetFirstOrDefaultAsync(u => u.Id == id);
+            if (product == null)
+                return NotFound();
+
+            ProductVM viewModel = new ProductVM
             {
-                Product = new(),
-                CategoryList = (await _unitOfWork.Category.GetAllAsync()).Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
-                BrandList = (await _unitOfWork.Brand.GetAllAsync()).Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                })
+                Id = product.Id,
+                Name = product.Name,
+                BrandId = product.BrandId,
+                CategoryId = product.CategoryId,
+                Price = product.Price,
+                ListPrice = product.ListPrice,
+                Description = product.Description,
+                ProductPicture = product.ProductPicture,
+                Categories = await _unitOfWork.Category.GetAllAsync(),
+                Brands = (await _unitOfWork.Brand.GetAllAsync())
             };
-            productVM.Product = await _unitOfWork.Product.GetFirstOrDefaultAsync(u => u.Id == id);
-            return View(productVM);
+             
+            return View("ProductForm",viewModel);
         }
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ProductVM obj)
+        public async Task<IActionResult> Edit(ProductVM viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                Product product = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == obj.Product.Id);
-                if (Request.Form.Files.Count > 0)
-                {
-                    var file =  Request.Form.Files.FirstOrDefault();
-
-                    //check file size and extension
-
-                    using (var dataStream = new MemoryStream())
-                    {
-                         await file.CopyToAsync(dataStream);
-                        product.ProductPicture = dataStream.ToArray();
-                    }
-                    
-                }
-                if(product.Price != obj.Product.Price)
-                {
-                    product.Price = obj.Product.Price;
-                }
-                if (product.ListPrice != obj.Product.ListPrice)
-                {
-                    product.ListPrice = obj.Product.ListPrice;
-                }
-                if (product.Name != obj.Product.Name)
-                {
-                    product.Name = obj.Product.Name;
-                }
-                if (product.BrandId != obj.Product.BrandId)
-                {
-                    product.BrandId = obj.Product.BrandId;
-                }
-                if (product.Description != obj.Product.Description)
-                {
-                    product.Description = obj.Product.Description;
-                }
-                if (product.CategoryId != obj.Product.CategoryId)
-                {
-                    product.CategoryId = obj.Product.CategoryId;
-                }
-                    _unitOfWork.Product.Update(product);
-                    _unitOfWork.Save();
-                    TempData["success"] = "Product updated successfully";
-                    return RedirectToAction("Index");
-                
+                viewModel.Categories = await _unitOfWork.Category.GetAllAsync();
+                viewModel.Brands = await _unitOfWork.Brand.GetAllAsync();
+                return View(viewModel);
             }
-            return View(obj);
+            
+            Product product = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == viewModel.Id);
+            if (Request.Form.Files.Count > 0)
+            {
+                var file =  Request.Form.Files.FirstOrDefault();
+
+                //check file size and extension
+
+                using var dataStream = new MemoryStream();
+                await file.CopyToAsync(dataStream);
+                product.ProductPicture = dataStream.ToArray();
+                                  
+            }
+            product.Price = viewModel.Price;          
+            product.ListPrice = viewModel.ListPrice;            
+            product.Name = viewModel.Name;            
+            product.BrandId = viewModel.BrandId;           
+            product.Description = viewModel.Description;            
+            product.CategoryId = viewModel.CategoryId; 
+            
+            _unitOfWork.Product.Update(product);
+            _unitOfWork.Save();
+            TempData["success"] = "Product updated successfully";                      
+            return RedirectToAction(nameof(Index));
         }
 
 

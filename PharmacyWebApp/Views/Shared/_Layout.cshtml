@@ -33,45 +33,53 @@
     <body>
         <header class="sticky-top navigation bg-white">
             <div class=container>
-                <nav class="navbar navbar-expand-lg navbar-light  ">
-                    <div class="collapse navbar-collapse text-center" id=navigation>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                   
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                         <ul class="navbar-nav  align-items-center">
-                            <li>
-                                 <a class=navbar-brand asp-controller="Home" asp-action="Index"> <img class="img-fluid" src="~/images/Logo.png" alt="Pharamacy"></a>
-                                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navigation">
-                                </button>
+                            <li class="nav-item">
+                                <a class=navbar-brand asp-controller="Home" asp-action="Index"> <img class="img-fluid" src="~/images/Logo.png" alt="Pharamacy"></a>
+
                             </li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="About" asp-action="Index">About</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Services" asp-action="Index">Services</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Team" asp-action="Index">Team</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Index">Shop</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link"   asp-controller="ShopCart" asp-action="Index">
-                                <i class="bi bi-cart"></i> 
-                            </a>
-                        </li>
-                        @if (User.IsInRole(SD.Role_Admin))
-                        {
-                            <li class="nav-item dropdown onclick"> <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Manage </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a class="dropdown-item" asp-controller="Manage" asp-action="Index">Dashboard</a></li>                    
-                                    <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">Product</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Brand" asp-action="Index">Brand</a></li> 
-                                    <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index">Manage Roles</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Users" asp-action="Index">Manage Users</a></li>
-                                    <li><div class="dropdown-divider"></div></li>
-                                </ul>
-                           </li>
-                        }
-                        </ul>
-                        <form class="form-inline search-wrapper d-none d-lg-block" class="search-wrapper" asp-controller="Search" asp-action="Index">
-                            <input id="search-by" name="s" type="search" class="form-control" placeholder="Search here ...">
-                            <button class="border-0 bg-white" type="submit"><i class="ti-search"></i></button>
-                        </form>
-                       
-                         <partial name="_LoginPartial" />
+                            <li class="nav-item">
+                                <a class="nav-link"   asp-controller="ShopCart" asp-action="Index">
+                                    <i class="bi bi-cart"></i> 
+                                </a>
+                            </li>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <li class="nav-item dropdown onclick"> <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Manage </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a class="dropdown-item" asp-controller="Manage" asp-action="Index">Dashboard</a></li>                    
+                                        <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">Product</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Brand" asp-action="Index">Brand</a></li> 
+                                        <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index">Manage Roles</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Users" asp-action="Index">Manage Users</a></li>
+                                        <li><div class="dropdown-divider"></div></li>
+                                    </ul>
+                               </li>
+                            }
+                            <li>
+                                <form class="form-inline search-wrapper d-none d-lg-block" class="search-wrapper" asp-controller="Search" asp-action="Index">
+                                <input id="search-by" name="s" type="search" class="form-control" placeholder="Search here ...">
+                                <button class="border-0 bg-white" type="submit"><i class="ti-search"></i></button>
+                                </form>
+                            </li>
+
+                            <partial name="_LoginPartial" />
+                            
+                            </ul>
+                           
                             
                     </div>
                 </nav>
@@ -112,23 +120,22 @@
                 </div>*@
             </div>
         </footer>
-        
+
         <script src="~/plugins/jQuery/jquery.min.js"></script>        
         <script src="~/plugins/masonry/masonry.min.js"></script>
         <script src="~/plugins/clipboard/clipboard.min.js"></script>
         <script src="~/plugins/match-height/jquery.matchHeight-min.js"></script>
         <script src="~/plugins/jquery-steps/build/jquery.steps.min.js"></script>
         <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
         <script src="~/plugins/bootstrap/bootstrap.min.js"></script>
-        
         <!-- Main Script -->
         <script src="~/js/script.js"></script>
-        <!-- JavaScript Libraries -->
+        <!-- JavaScript Libraries -->        
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
          <script src="~/lib/bootbox.js/bootbox.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
         @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

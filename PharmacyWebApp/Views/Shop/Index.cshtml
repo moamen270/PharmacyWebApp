@@ -2,7 +2,7 @@
     <input id="search-by" name="s" type="search" class="form-control form-control-lg" placeholder="Search Here...">
     <button type="submit" class="btn btn-primary">Search</button>
 </form>*@
-
+@model IEnumerable<Product>
 <!-- Services Start -->
 <div class="container-fluid py-5">
     <div class="container">
@@ -16,7 +16,35 @@
         <br />
         <br />
         <div class="row">
-            <div class="col-md-6 col-lg-4">
+            @foreach(var product in Model)
+            {
+                   <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title">@product.Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@product.Category</h6>
+                    </div>
+                    @if(product.ProductPicture!= null)
+                        {
+                            <img class=" img-card" src="data:image/*;base64,@(Convert.ToBase64String(product.ProductPicture))" alt="@product.Name">
+                        }
+                        else
+                        {
+                            <img class=" img-card" src="~/images/Medicalll.png" alt="@product.Name">        
+                        }
+
+                    <div class="card-body">
+                        <p class="card-text">@product.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text d-inline">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
+                    </div>
+                </div>
+            </div>     
+            }
+            @*<div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-header bg-white">
                         <h5 class="card-title">Bi Cofan</h5>
@@ -236,7 +264,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End Col -->
+            <!-- End Col -->*@
         </div>
     </div>
     </div>

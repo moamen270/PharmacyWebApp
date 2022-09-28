@@ -1940,7 +1940,9 @@ pre .copy-to-clipboard {
     margin-left:6px;
 }
 
-
+img .img-card {
+    height: 300px;
+}
 
 
 
