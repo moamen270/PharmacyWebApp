@@ -1940,10 +1940,11 @@ pre .copy-to-clipboard {
     margin-left:6px;
 }
 
-img .img-card {
-    height: 300px;
+.shop-picture {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
 }
-
 
 
 /*# sourceMappingURL=style.css.map */

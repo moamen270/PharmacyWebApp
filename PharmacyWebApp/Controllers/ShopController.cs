@@ -18,7 +18,7 @@ namespace PharmacyWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _unitOfWork.Product.GetAllAsync();
+            var products = await _unitOfWork.Product.GetAllAsync(new string[] {nameof(Category)});
             return View(products);
         }
 
