@@ -13,6 +13,7 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
         Task<T> GetAsyce(int id);
         IEnumerable<T> GetAll( string[]? include = null);
         Task<IEnumerable<T>> GetAllAsync(string[]? include = null);
+        Task<IEnumerable<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter,string[]? include = null);
         T GetFirstOrDefault(Expression<Func<T,bool>>? filter = null, string[]? include = null);
         Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter=null, string[]? include = null);
         T Add(T entity);

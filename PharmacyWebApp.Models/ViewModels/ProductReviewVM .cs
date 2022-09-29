@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace PharmacyWebApp.Models.ViewModels
 {
-    public class ProductVM
+    public class ProductReviewVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -21,18 +20,15 @@ namespace PharmacyWebApp.Models.ViewModels
         [Range(1, 1000)]
         public double Price { get; set; } = 1;
         public byte[]? ProductPicture { get; set; }
-        [Range(0,5)]
-        public int Rate { get; set; }
+		public double AvgRate { get; set; } 
+		[Range(1,5)]
+        public double Rate { get; set; }
         public string? Comment { get; set; }
         public int? BrandId { get; set; }
         public Brand Brand { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
-        [ValidateNever]
-         public IEnumerable<Brand> Brands { get; set; }
-        [ValidateNever]
-        public IEnumerable<Category> Categories { get; set; }
-        [ValidateNever]
+		[ValidateNever]
         public IEnumerable<Review> Reviews { get; set; }
 
 

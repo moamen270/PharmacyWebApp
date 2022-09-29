@@ -28,7 +28,7 @@ namespace PharmacyWebApp.DataAccess.Repository
             _context.AddRange(entities);
             return entities;
         }
-        
+
         public int Count()
         {
             return _context.Set<T>().Count();
@@ -53,31 +53,31 @@ namespace PharmacyWebApp.DataAccess.Repository
         {
 
             return _context.Set<T>().Find(id);
-            
+
         }
 
         public IEnumerable<T> GetAll(string[]? include = null)
         {
             IQueryable<T> result = _context.Set<T>();
-            if(include != null)
-                foreach(var item in include)
+            if (include != null)
+                foreach (var item in include)
                 {
                     result = result.Include(item);
                 }
             return result.ToList();
         }
-        public async Task<IEnumerable<T>> GetAllAsync( string[]? include = null)
+        public async Task<IEnumerable<T>> GetAllAsync(string[]? include = null)
         {
             IQueryable<T> result = _context.Set<T>();
-            if(include != null)
-                foreach(var item in include)
+            if (include != null)
+                foreach (var item in include)
                 {
                     result = result.Include(item);
                 }
             return await result.ToListAsync();
         }
 
-        public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>>? filter=null, string[]? include = null)
+        public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>>? filter = null, string[]? include = null)
         {
             IQueryable<T> query = _context.Set<T>();
             if (filter != null)
@@ -109,7 +109,7 @@ namespace PharmacyWebApp.DataAccess.Repository
         {
             IQueryable<T> query = _context.Set<T>();
             if (filter != null)
-                query = query.Where(filter);                       
+                query = query.Where(filter);
             if (include != null)
             {
                 foreach (var item in include)
@@ -141,5 +141,22 @@ namespace PharmacyWebApp.DataAccess.Repository
         {
             return await _context.Set<T>().CountAsync(filter);
         }
+
+
+        public async Task<IEnumerable<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter,string[]? include = null)
+        {
+            var query = _context.Set<T>().Where(filter);
+            if (include != null)
+            {
+                foreach (var item in include)
+                {
+                    query = query.Include(item);
+                }
+            }
+
+            return await query.ToListAsync();
+
+        }
+
     }
 }

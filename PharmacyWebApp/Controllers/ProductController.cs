@@ -5,17 +5,18 @@ using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Models;
 using PharmacyWebApp.Models.ViewModels;
 using System.Diagnostics;
-
+using System.Security.Claims;
 
 namespace PharmacyWebApp.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-
+        
         public ProductController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+           
         }
 
         public async Task<IActionResult> Index()
@@ -163,13 +164,47 @@ namespace PharmacyWebApp.Controllers
         }
 
 
-        public async Task<IActionResult> Details(int id )
+        public async Task<IActionResult> Details(int id)
         {
-           Product obj = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == id ,new string[] {"Brand","Category", "ReviewsList" });
-            return View(obj);
+           Product product = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == id ,new string[] {"Brand","Category","Reviews"});
+            ProductReviewVM viewModel = new()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                BrandId = product.BrandId,
+                CategoryId = product.CategoryId,
+                Price = product.Price,
+                ListPrice = product.ListPrice,
+                Description = product.Description,
+                ProductPicture = product.ProductPicture,
+                Category = product.Category,
+                Brand = product.Brand,
+                Reviews = await _unitOfWork.Review.GetAllByFilterAsync(a => a.ProductId == product.Id),                
+            };
+            double temp = 0;
+            foreach(var item in viewModel.Reviews)
+			{
+                temp += item.Rate;
+			}
+            viewModel.AvgRate = temp/ viewModel.Reviews.Count();
+            return View(viewModel);
+        }
+		[HttpPost]
+        public async Task<IActionResult> AddReview(ProductReviewVM viewModel)
+        {
+            Review review = new Review()
+            {
+                ProductId = viewModel.Id,
+                Rate = viewModel.Rate,
+                Comment = viewModel.Comment,                
+            };
+            await _unitOfWork.Review.AddAsync(review);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Details), new {id = viewModel.Id}); ;
         }
 
-      
+
+
 
 
 

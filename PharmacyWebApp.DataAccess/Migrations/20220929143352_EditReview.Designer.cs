@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PharmacyWebApp.DataAccess;
 
@@ -11,9 +12,10 @@ using PharmacyWebApp.DataAccess;
 namespace PharmacyWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220929143352_EditReview")]
+    partial class EditReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -397,8 +399,8 @@ namespace PharmacyWebApp.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Rate")
-                        .HasColumnType("float");
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -539,7 +541,7 @@ namespace PharmacyWebApp.Migrations
             modelBuilder.Entity("PharmacyWebApp.Models.Review", b =>
                 {
                     b.HasOne("PharmacyWebApp.Models.Product", "Product")
-                        .WithMany("Reviews")
+                        .WithMany("ReviewsList")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -568,7 +570,7 @@ namespace PharmacyWebApp.Migrations
 
             modelBuilder.Entity("PharmacyWebApp.Models.Product", b =>
                 {
-                    b.Navigation("Reviews");
+                    b.Navigation("ReviewsList");
                 });
 #pragma warning restore 612, 618
         }
