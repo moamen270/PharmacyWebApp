@@ -18,7 +18,7 @@ namespace PharmacyWebApp.Models
         public string? State { get; set; }
         public string? PostalCode { get; set; }
         public byte[]? ProfilePicture { get; set; }
-        public ICollection<Review>? ReviewsList { get; set; }
+        
 
     }
 }
