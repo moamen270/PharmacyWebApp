@@ -1,7 +1,12 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+@using PharmacyWebApp.DataAccess
+@model PaginatedList<Product>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
 
 <!-- banner -->
 <section class="section pb-0">
@@ -28,121 +33,33 @@
         <br />
         <br />
         <div class="row">
-            <div class="col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <h5 class="card-title">Bi Cofan</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    </div>
-                    <img class="img-fluid" src="images/Medicalll.png" alt="">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text d-inline">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    </div>
-                    <img class="img-fluid" src="images/Medicalll.png" alt="">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text d-inline">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
+            @foreach(var product in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title">@product.Name</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@product.Category.Name</h6>
+                        </div>
+                        @if(product.ProductPicture!= null)
+                        {
+                            <img class="shop-picture" src="data:image/*;base64,@(Convert.ToBase64String(product.ProductPicture))" alt="@product.Name">
+                        }
+                        else
+                        {
+                            <img class="shop-picture" src="~/images/Medicalll.png" alt="@product.Name">        
+                        }                        
+                        <div class="card-body">
+                            <p class="card-text">@product.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-sm   btn-primary"><small>BuyNow!</small></a>
+                            <a asp-controller="Product" asp-action="Details" asp-route-Id="@product.Id" class=" btn btn-sm btn-secondary"><small>Details</small></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    </div>
-                    <img class="img-fluid" src="images/Medicalll.png" alt="">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text d-inline">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
-
-            
-            <!-- End Col -->
-            <div class="col-md-6 col-lg-4 mt-2">
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    </div>
-                    <img class="img-fluid" src="images/Medicalll.png" alt="">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text d-inline">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
-            <!-- End Col -->
-            <div class="col-md-6 col-lg-4 mt-2">
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    </div>
-                    <img class="img-fluid" src="images/Medicalll.png" alt="">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text d-inline">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
-            <!-- End Col -->
-            <div class="col-md-6 col-lg-4 mt-2">
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    </div>
-                    <img class="img-fluid" src="images/Medicalll.png" alt="">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text d-inline">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
-            
-        </div>
+            }                      
+        </div>  
     </div>
 </div>
 

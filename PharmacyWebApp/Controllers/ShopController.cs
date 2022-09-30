@@ -2,6 +2,7 @@
 using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Models;
 using System.Diagnostics;
+using PharmacyWebApp.DataAccess;
 
 namespace PharmacyWebApp.Controllers
 {
@@ -9,17 +10,20 @@ namespace PharmacyWebApp.Controllers
     {
         private readonly ILogger<ShopController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ApplicationDbContext _context;
 
-        public ShopController(ILogger<ShopController> logger, IUnitOfWork unitOfWork)
+        public ShopController(ILogger<ShopController> logger, IUnitOfWork unitOfWork, ApplicationDbContext context)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber = 1)
         {
-            var products = await _unitOfWork.Product.GetAllAsync(new string[] {nameof(Category)});
-            return View(products);
+            var products = await _unitOfWork.Product.GetAllAsync(new string[] {"Category"});                 
+            int pageSize = 9;
+            return View(await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize));            
         }
 
         
