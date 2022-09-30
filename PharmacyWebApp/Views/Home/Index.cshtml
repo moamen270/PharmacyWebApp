@@ -39,7 +39,7 @@
                     <div class="card">
                         <div class="card-header bg-white">
                             <h6 class="card-title">@product.Name</h6>
-                            <h7 class="card-subtitle mb-2 text-muted">@product.Category.Name</h7>
+                            <h7 class="card-subtitle mb-2 text-muted">@product.Brand.Name</h7>
                         </div>
                         @if(product.ProductPicture!= null)
                         {
@@ -50,7 +50,8 @@
                             <img class="shop-picture" src="~/images/Medicalll.png" alt="@product.Name">        
                         }                        
                         <div class="card-body">
-                            <p class="card-text">@product.Description</p>
+                            <p class="card-text">Description: @product.Description</p>
+                            <span>Price: @product.Price $</span>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-sm   btn-primary"><small>BuyNow!</small></a>

@@ -135,7 +135,7 @@ namespace PharmacyWebApp.Controllers
             {
                 viewModel.Categories = await _unitOfWork.Category.GetAllAsync();
                 viewModel.Brands = await _unitOfWork.Brand.GetAllAsync();
-                return View(viewModel);
+                return View("ProductForm", viewModel); ;
             }
             
             Product product = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == viewModel.Id);
@@ -155,8 +155,9 @@ namespace PharmacyWebApp.Controllers
             product.Name = viewModel.Name;            
             product.BrandId = viewModel.BrandId;           
             product.Description = viewModel.Description;            
-            product.CategoryId = viewModel.CategoryId; 
-            
+            product.CategoryId = viewModel.CategoryId;
+            product.Category = viewModel.Category;
+            product.Brand = viewModel.Brand;
             _unitOfWork.Product.Update(product);
             _unitOfWork.Save();
             TempData["success"] = "Product updated successfully";                      

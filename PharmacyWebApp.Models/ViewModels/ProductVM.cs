@@ -25,8 +25,10 @@ namespace PharmacyWebApp.Models.ViewModels
         public int Rate { get; set; }
         public string? Comment { get; set; }
         public int? BrandId { get; set; }
+        [ValidateNever]
         public Brand Brand { get; set; }
         public int? CategoryId { get; set; }
+        [ValidateNever]
         public Category Category { get; set; }
         [ValidateNever]
          public IEnumerable<Brand> Brands { get; set; }
