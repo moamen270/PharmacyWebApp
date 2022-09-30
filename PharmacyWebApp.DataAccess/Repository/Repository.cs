@@ -68,7 +68,7 @@ namespace PharmacyWebApp.DataAccess.Repository
         }
         public async Task<IEnumerable<T>> GetAllAsync(string[]? include = null)
         {
-            IQueryable<T> result = _context.Set<T>();
+            IQueryable<T> result = _context.Set<T>().AsNoTracking();
             if (include != null)
                 foreach (var item in include)
                 {
@@ -141,6 +141,7 @@ namespace PharmacyWebApp.DataAccess.Repository
         {
             return await _context.Set<T>().CountAsync(filter);
         }
+
 
 
         public async Task<IEnumerable<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter,string[]? include = null)
