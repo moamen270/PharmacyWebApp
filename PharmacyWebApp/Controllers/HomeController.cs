@@ -18,7 +18,7 @@ namespace PharmacyWebApp.Controllers
 
         public async Task<IActionResult> Index(int? pageNumber = 1)
         {
-            var products = await _unitOfWork.Product.GetAllAsync(new string[] { "Category" });
+            var products = await _unitOfWork.Product.GetAllAsync(new string[] { "Category","Brand" });
             int pageSize = 6;
             return View(await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize));
         }
