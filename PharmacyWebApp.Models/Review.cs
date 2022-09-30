@@ -7,7 +7,8 @@ namespace PharmacyWebApp.Models
     public class Review
     {
         public int Id { get; set; }
-        [Range(0,5)]
+		[Range(1, 5)]
+		[Required]
         public double Rate { get; set; }
         public string? Comment { get; set; }
         public DateTime AddedDateTime { get; set; } = DateTime.Now;

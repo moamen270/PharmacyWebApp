@@ -8,7 +8,7 @@
         </div>
    <div class="row mt-3">
     <div class="col-12 m-b-30">
-        <h4 class="d-inline">BEST SELLERS ON OUR PHARMANCY</h4>
+       
         <br />
         <br />
         <div class="row">
@@ -17,8 +17,8 @@
                    <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card">
                     <div class="card-header bg-white">
-                        <h5 class="card-title">@product.Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@product.Category.Name</h6>
+                        <h6 class="card-title">@product.Name</h6>
+                        <h7 class="card-subtitle  mb-2 text-muted">@product.Category.Name</h7>
                     </div>
                     @if(product.ProductPicture!= null)
                         {
@@ -33,9 +33,8 @@
                         <p class="card-text">@product.Description</p>
                     </div>
                     <div class="card-footer">
-                        <p class="card-text d-inline">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p><a href="#" class="card-link float-right btn btn-primary"><small>BuyNow!</small></a>
+                        <a href="#" class="btn btn-sm   btn-primary"><small>BuyNow!</small></a>
+                        <a asp-controller="Product" asp-action="Details" asp-route-Id="@product.Id" class=" btn btn-sm btn-secondary"><small>Details</small></a>
                     </div>
                 </div>
             </div>     
