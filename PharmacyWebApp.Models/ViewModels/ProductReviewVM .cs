@@ -22,6 +22,7 @@ namespace PharmacyWebApp.Models.ViewModels
         public byte[]? ProductPicture { get; set; }
 		public double AvgRate { get; set; } 
 		[Range(1,5)]
+		[Required]
         public double Rate { get; set; }
         public string? Comment { get; set; }
         public int? BrandId { get; set; }

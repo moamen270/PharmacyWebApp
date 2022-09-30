@@ -78,7 +78,7 @@
 							<div class="mb-3 col-3 ">
 								<i class="bi bi-star-fill text-warning"></i>
 								<label asp-for="Rate"></label>
-								<input  asp-for="Rate" rows="3" max="5" min="1" class="form-control" value="1"/>	
+								<input  asp-for="Rate" max="5" min="1" class="form-control" value="1"/>	
 								 <span asp-validation-for="Rate" class="text-danger"></span>
 							</div>
 							<div class=" col-12">
@@ -101,3 +101,8 @@
 
 
 
+@section Scripts{
+	@{
+	<partial name="_ValidationScriptsPartial" />
+	}
+}

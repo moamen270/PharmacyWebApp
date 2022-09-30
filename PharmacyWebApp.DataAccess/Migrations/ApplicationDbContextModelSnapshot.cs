@@ -256,7 +256,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Category", b =>
@@ -273,7 +273,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.CreditCard", b =>
@@ -300,7 +300,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CreditCards");
+                    b.ToTable("CreditCards", (string)null);
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Order", b =>
@@ -337,7 +337,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Product", b =>
@@ -377,7 +377,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.Review", b =>
@@ -404,7 +404,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.ShopCart", b =>
@@ -437,7 +437,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShopCarts");
+                    b.ToTable("ShopCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

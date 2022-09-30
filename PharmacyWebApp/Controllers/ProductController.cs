@@ -167,6 +167,7 @@ namespace PharmacyWebApp.Controllers
         public async Task<IActionResult> Details(int id)
         {
            Product product = await _unitOfWork.Product.GetFirstOrDefaultAsync(p => p.Id == id ,new string[] {"Brand","Category","Reviews"});
+            var RateList = await _unitOfWork.Review.GetAllByFilterAsync(a => a.ProductId == product.Id);
             ProductReviewVM viewModel = new()
             {
                 Id = product.Id,
@@ -179,14 +180,14 @@ namespace PharmacyWebApp.Controllers
                 ProductPicture = product.ProductPicture,
                 Category = product.Category,
                 Brand = product.Brand,
-                Reviews = await _unitOfWork.Review.GetAllByFilterAsync(a => a.ProductId == product.Id),                
+                Reviews = (await _unitOfWork.Review.GetAllByFilterAsync(a => a.ProductId == product.Id &&  a.Comment != null)).OrderByDescending(e => e.Rate),                
             };
             double temp = 0;
-            foreach(var item in viewModel.Reviews)
+            foreach(var item in RateList)
 			{
                 temp += item.Rate;
 			}
-            viewModel.AvgRate = temp/ viewModel.Reviews.Count();
+            viewModel.AvgRate = temp/ RateList.Count();
             return View(viewModel);
         }
 		[HttpPost]
