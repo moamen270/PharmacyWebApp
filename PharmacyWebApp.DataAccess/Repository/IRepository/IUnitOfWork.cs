@@ -14,6 +14,7 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
         ICategoryRepository Category { get; }
         IOrderRepository Order { get; }
         IReviewRepository Review { get; }
+        IApplicationUserRepository ApplicationUser { get; }
         int Save();
 
     }

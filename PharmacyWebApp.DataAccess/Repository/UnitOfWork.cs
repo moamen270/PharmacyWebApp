@@ -21,6 +21,7 @@ namespace PharmacyWebApp.DataAccess.Repository
         public IOrderRepository Order { get; private set; }
 
         public IReviewRepository Review { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -31,6 +32,7 @@ namespace PharmacyWebApp.DataAccess.Repository
             Category = new CategoryRepository(_context);
             Order = new OrderRepository(_context);
             Review = new ReviewRepository(_context);
+            ApplicationUser = new ApplicationUserRepository(_context);
         }
 
         
