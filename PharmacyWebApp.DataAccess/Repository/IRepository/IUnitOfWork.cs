@@ -15,6 +15,7 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
         IOrderRepository Order { get; }
         IReviewRepository Review { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IShoppingCartRepository ShoppingCart { get; }
         int Save();
 
     }

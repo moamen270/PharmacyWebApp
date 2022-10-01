@@ -22,6 +22,7 @@ namespace PharmacyWebApp.DataAccess.Repository
 
         public IReviewRepository Review { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -33,6 +34,7 @@ namespace PharmacyWebApp.DataAccess.Repository
             Order = new OrderRepository(_context);
             Review = new ReviewRepository(_context);
             ApplicationUser = new ApplicationUserRepository(_context);
+            ShoppingCart = new ShoppingCartRepository(_context);
         }
 
         
