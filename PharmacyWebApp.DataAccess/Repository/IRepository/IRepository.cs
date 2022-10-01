@@ -12,10 +12,12 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
         T Get(int id);
         Task<T> GetAsyce(int id);
         IEnumerable<T> GetAll( string[]? include = null);
+        IEnumerable<T> GetAllByDeafult(Expression<Func<T, bool>>? filter = null, string? includeProperties = null);
         Task<IEnumerable<T>> GetAllAsync(string[]? include = null);
         Task<IEnumerable<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter,string[]? include = null);
         T GetFirstOrDefault(Expression<Func<T,bool>>? filter = null, string[]? include = null);
         Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter=null, string[]? include = null);
+      
         T Add(T entity);
         Task<T> AddAsync(T entity);
         IEnumerable<T> AddRange(IEnumerable<T> entities);
@@ -28,6 +30,6 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
         Task<int> CountAsync();
         Task<int> CountAsync(Expression<Func<T, bool>> filter);
 
-
+        T GetFirstOrDefaultForShopping(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true);
     }
 }

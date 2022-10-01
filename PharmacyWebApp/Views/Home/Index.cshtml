@@ -2,11 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 @using PharmacyWebApp.DataAccess
-@model PaginatedList<Product>
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
+@model IEnumerable<PharmacyWebApp.Models.Product>
+
 
 <!-- banner -->
 <section class="section pb-0">
@@ -54,7 +51,7 @@
                             <span>Price: @product.Price $</span>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-sm   btn-primary"><small>BuyNow!</small></a>
+                            <a asp-action="Details" asp-route-productid="@product.Id" class="btn btn-sm   btn-primary"><small>BuyNow!</small></a>
                             <a asp-controller="Product" asp-action="Details" asp-route-Id="@product.Id" class=" btn btn-sm btn-secondary"><small>Details</small></a>
                         </div>
                     </div>
