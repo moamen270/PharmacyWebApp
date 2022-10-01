@@ -1,0 +1,82 @@
+@using PharmacyWebApp.DataAccess
+@model PaginatedList<Product>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+@{
+    ViewData["Title"] = "Search";
+}
+<!-- Services Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">                
+                <h2 class="mb-5 font-weight-medium">Search result for <span class="text-primary">@ViewData["searchString"] (@ViewData["ResultCount"])</span></h2>
+            </div>
+        <div class="row mt-3">
+            <div class="col-12 m-b-30">  
+                <br />
+                <br />
+                <div class="row">
+                    @foreach(var product in Model)
+                    {
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <h6 class="card-title">@product.Name</h6>
+                                    <h7 class="card-subtitle  mb-2 text-muted">@product.Brand.Name</h7>
+                                </div>
+                                @if(product.ProductPicture!= null)
+                                {
+                                    <img class="shop-picture" src="data:image/*;base64,@(Convert.ToBase64String(product.ProductPicture))" alt="@product.Name">
+                                }
+                                else
+                                {
+                                    <img class="shop-picture" src="~/images/Medicalll.png" alt="@product.Name">        
+                                }
+
+                                <div class="card-body">
+                                    <p class="card-text">Description: @product.Description</p>
+                                    <span>Price: @product.Price $</span>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="btn btn-sm   btn-primary"><small>BuyNow!</small></a>
+                                    <a asp-controller="Product" asp-action="Details" asp-route-Id="@product.Id" class=" btn btn-sm btn-secondary"><small>Details</small></a>
+                                </div>
+                            </div>
+                        </div>     
+                    }
+            </div>
+        </div>
+    </div>
+
+        <div class="col-lg-12">
+            <div >
+                <div class="card-body">
+                    <div class="bootstrap-pagination">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item ">
+                                    <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)"class="page-link @prevDisabled"> Previous </a>
+                                </li>
+                                @for(int i =1;i<= Model.TotalPages;i++)
+                                {
+                                    <li class="page-item">
+                                        <a asp-action="Index"asp-route-pageNumber="@i" class="page-link">@i</a>
+                                    </li>
+                                }                       
+                                <li class="page-item">
+
+                                    <a asp-action="Index"asp-route-pageNumber="@(Model.PageIndex + 1)" class="page-link @nextDisabled">Next</a>
+                                </li>
+                                
+                                
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
