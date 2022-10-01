@@ -22,21 +22,31 @@ namespace PharmacyWebApp.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+            ViewData["SearchString"] = searchString;
             return View();
         }
         
-        public async Task<IActionResult> Result(string key)
+        public async Task<IActionResult> Result(string searchString)
         {
-            if (key == null)
+            ViewData["SearchString"] = searchString;
+            if (searchString == null)
             {
+                ViewData["ResultCount"] = "";
                 var products = await _unitOfWork.Product.GetAllAsync(new string[] { "Category", "Brand" });
                 return View(await PaginatedList<Product>.CreateAsync(products, 1, 9));
             }
 
-            var products2 = await _unitOfWork.Product.GetAllByFilterAsync(e=> e.Name.Contains(key),new string[] { "Category", "Brand" });
-            return View(await PaginatedList<Product>.CreateAsync(products2, 1, 9));
+            var productsResult = await _unitOfWork.Product.GetAllByFilterAsync(e=> e.Name.Contains(searchString),new string[] { "Category", "Brand" });
+            if(productsResult.FirstOrDefault() != null)
+            {
+                ViewData["ResultCount"] = productsResult.Count();
+                return View(await PaginatedList<Product>.CreateAsync(productsResult, 1, 9));
+            }
+            
+            else 
+                return RedirectToAction(nameof(Index), new { searchString });
         }
 
 

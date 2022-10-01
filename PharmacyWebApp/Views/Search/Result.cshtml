@@ -5,14 +5,13 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 @{
-    ViewData["Title"] = "Shop";
+    ViewData["Title"] = "Search";
 }
 <!-- Services Start -->
     <div class="container-fluid py-5">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5"></h5>
-                <h1 class="display-4">Search Result</h1>
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">                
+                <h2 class="mb-5 font-weight-medium">Search result for <span class="text-primary">@ViewData["searchString"] (@ViewData["ResultCount"])</span></h2>
             </div>
         <div class="row mt-3">
             <div class="col-12 m-b-30">  
