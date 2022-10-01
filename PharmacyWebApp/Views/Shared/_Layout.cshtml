@@ -70,12 +70,11 @@
                                </li>
                             }
                             <li>
-                                <form class="form-inline search-wrapper d-none d-lg-block" class="search-wrapper" asp-controller="Search" asp-action="Index">
-                                <input id="search-by" name="s" type="search" class="form-control" placeholder="Search here ...">
+                                <form class="form-inline search-wrapper d-none d-lg-block" asp-controller="Search" asp-action="Result">
+                                <input name="searchString" class="form-control" placeholder="Search here ...">
                                 <button class="border-0 bg-white" type="submit"><i class="ti-search"></i></button>
                                 </form>
                             </li>
-
                             <partial name="_LoginPartial" />
                             
                             </ul>
