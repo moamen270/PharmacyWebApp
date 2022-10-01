@@ -10,13 +10,13 @@ namespace PharmacyWebApp.Controllers
     {
         private readonly ILogger<ShopController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ApplicationDbContext _context;
+        
 
-        public ShopController(ILogger<ShopController> logger, IUnitOfWork unitOfWork, ApplicationDbContext context)
+        public ShopController(ILogger<ShopController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
-            _context = context;
+           
         }
 
         public async Task<IActionResult> Index(int? pageNumber = 1)

@@ -50,6 +50,7 @@
 					@foreach(var item in Model.Reviews)
 					{
 						<div class="card m-1">
+							<h6>@item.User.FirstName @item.User.LastName</h6>
 							<div class="col-6 ">																
 							<span class="mt-2">
 							<i class="bi bi-star-fill text-warning"></i>
