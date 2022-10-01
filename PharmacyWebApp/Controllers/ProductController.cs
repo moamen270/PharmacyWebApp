@@ -12,11 +12,12 @@ namespace PharmacyWebApp.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        
-        public ProductController(IUnitOfWork unitOfWork)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public ProductController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
-           
+           _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -181,7 +182,7 @@ namespace PharmacyWebApp.Controllers
                 ProductPicture = product.ProductPicture,
                 Category = product.Category,
                 Brand = product.Brand,
-                Reviews = (await _unitOfWork.Review.GetAllByFilterAsync(a => a.ProductId == product.Id &&  a.Comment != null)).OrderByDescending(e => e.Rate),                
+                Reviews = (await _unitOfWork.Review.GetAllByFilterAsync(a => a.ProductId == product.Id &&  a.Comment != null, new string[] {"User"})).OrderByDescending(e => e.Rate),                
             };
             double temp = 0;
             foreach(var item in RateList)
@@ -198,7 +199,8 @@ namespace PharmacyWebApp.Controllers
             {
                 ProductId = viewModel.Id,
                 Rate = viewModel.Rate,
-                Comment = viewModel.Comment,                
+                Comment = viewModel.Comment,  
+                UserId = (await _userManager.GetUserAsync(User)).Id
             };
             await _unitOfWork.Review.AddAsync(review);
             _unitOfWork.Save();

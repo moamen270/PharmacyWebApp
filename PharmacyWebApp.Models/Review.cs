@@ -15,6 +15,9 @@ namespace PharmacyWebApp.Models
         public int ProductId { get; set; }
         [ValidateNever]
         public Product Product { get; set; }
-        
+        public string UserId { get; set; }
+        [ValidateNever]
+        public ApplicationUser User { get; set; }
+
     }
 }
