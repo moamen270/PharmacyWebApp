@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace PharmacyWebApp.DataAccess.Repository.IRepository
 {
-    public interface IOrderRepository : IRepository<Order>
+    public interface IOrderForHeaderRepository : IRepository<OrderForHeader>
     {
+    
     }
 }

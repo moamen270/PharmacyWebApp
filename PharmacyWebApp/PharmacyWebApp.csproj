@@ -14,10 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Cart\Buynow.cshtml" />
     <Content Remove="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Cart\Buynow.cshtml" />
     <None Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
   </ItemGroup>
@@ -47,6 +49,14 @@
     <ProjectReference Include="..\PharmacyWebApp.DataAccess\PharmacyWebApp.DataAccess.csproj" />
     <ProjectReference Include="..\PharmacyWebApp.Models\PharmacyWebApp.Models.csproj" />
     <ProjectReference Include="..\PharmacyWebApp.Utility\PharmacyWebApp.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Cart\Buynow.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Cart\Buynow.cshtml" />
   </ItemGroup>
 
 </Project>

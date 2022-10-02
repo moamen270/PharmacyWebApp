@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace PharmacyWebApp.DataAccess.Repository
 {
-    public class OrderRepository : Repository<Order> ,IOrderRepository
+    public class OrderForDetailRepository : Repository<OrderForDetail>, IOrderForDetailRepository
     {
         private readonly ApplicationDbContext _context;
-        public OrderRepository(ApplicationDbContext context) : base(context)
+        public OrderForDetailRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
-        }
-
+    }
     }
 }

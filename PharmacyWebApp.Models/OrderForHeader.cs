@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace PharmacyWebApp.Models
 {
-	public class OrderDetails
-	{
+    public class OrderForHeader
+    {
         public int Id { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
