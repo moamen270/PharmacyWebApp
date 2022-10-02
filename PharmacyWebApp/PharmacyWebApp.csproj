@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <None Include="Views\Cart\Buynow.cshtml" />
+    <None Include="Views\Shared\Components\ShoppingCart\Default.cshtml" />
     <None Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
   </ItemGroup>
