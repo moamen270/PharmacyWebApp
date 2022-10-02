@@ -55,7 +55,7 @@
 						<ul class="list-group">
 							<li class="list-group-item d-flex justify-content-between bg-light">
 								<span class="text-info"> Total (USD)</span>
-								<strong class="text-info">@Model.CartTotal.ToString("c")</strong>
+								<strong class="text-info">@Model.OrderForHeader.OrderTotal.ToString("c")</strong>
 							</li>
 						</ul>
 					</div>
@@ -65,9 +65,9 @@
 
 			<div class="card-footer">
 				<div class="row ">
-					<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
-						<a asp-action="Summary" class="btn btn-primary col-sm-12 col-lg-6 col-md-6  offset-md-6 ">BuyNow</a>
-					</div>
+						<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
+							<a asp-action="Buynow" class="btn btn-primary col-sm-12 col-lg-6 col-md-6  offset-md-6 ">BuyNow</a>
+						</div>
 				</div>
 			</div>
 		</div>

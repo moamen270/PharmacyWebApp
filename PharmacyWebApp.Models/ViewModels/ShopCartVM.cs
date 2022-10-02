@@ -10,6 +10,5 @@ namespace PharmacyWebApp.Models.ViewModels
 	{
         public IEnumerable<ShopCart> ListCart { get; set; }
 
-        public OrderDetails OrderDetails { get; set; }
     }
 }

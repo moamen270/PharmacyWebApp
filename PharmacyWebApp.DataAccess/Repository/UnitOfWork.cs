@@ -18,11 +18,11 @@ namespace PharmacyWebApp.DataAccess.Repository
 
         public ICategoryRepository Category { get; private set; }
 
-        public IOrderRepository Order { get; private set; }
-
         public IReviewRepository Review { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IOrderForHeaderRepository OrderForHeader { get; private set; }
+        public IOrderForDetailRepository OrderForDetail { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -31,10 +31,11 @@ namespace PharmacyWebApp.DataAccess.Repository
             Brand = new BrandRepository(_context);
             ShopCart = new ShopCartRepository(_context);
             Category = new CategoryRepository(_context);
-            Order = new OrderRepository(_context);
             Review = new ReviewRepository(_context);
             ApplicationUser = new ApplicationUserRepository(_context);
             ShoppingCart = new ShoppingCartRepository(_context);
+            OrderForHeader = new OrderForHeaderRepository(_context);
+            OrderForDetail = new OrderForDetailRepository(_context);
         }
 
         
