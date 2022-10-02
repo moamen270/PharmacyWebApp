@@ -1,5 +1,6 @@
 ﻿@model PharmacyWebApp.Models.ViewModels.ShoppingCartVM
-
+@using Microsoft.Extensions.Options
+@inject IOptions<PharmacyWebApp.Utility.StripeSettings> Stripe
 
 <form method="post">
 	<br />
