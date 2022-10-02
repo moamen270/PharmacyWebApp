@@ -39,7 +39,7 @@
 				@Model.Brand.Name
 			</span>
 			<p class="text-justify mt-3">@Model.Description</p>
-			<a class="btn btn-sm btn-primary">Buy Now</a>
+			<a asp-controller="Home" asp-action="Details" asp-route-productid="@Model.Id" class="btn btn-sm btn-primary">Buy Now</a>
 			<a class="btn btn-sm btn-primary">Add to Cart</a>
 		</div>
 		<div class="row">
