@@ -1,5 +1,6 @@
-﻿@using PharmacyWebApp.Utility
-
+﻿@using Microsoft.AspNetCore.Http
+@using PharmacyWebApp.Utility
+@inject IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,9 +53,12 @@
                             <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Index">Shop</a></li>
                             <li class="nav-item">
                                 <a class="nav-link"   asp-controller="Cart" asp-action="Index">
-                                    <i class="bi bi-cart"></i> 
+                                @await Component.InvokeAsync("ShoppingCart")
                                 </a>
                             </li>
+
+
+
                             @if (User.IsInRole(SD.Role_Admin))
                             {
                                 <li class="nav-item dropdown onclick"> <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Manage </a>
