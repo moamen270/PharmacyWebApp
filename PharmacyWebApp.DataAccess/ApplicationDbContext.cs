@@ -35,8 +35,8 @@ namespace PharmacyWebApp.DataAccess
         DbSet<ShopCart> ShopCarts { get; set; }
         DbSet<CreditCard> CreditCards { get; set; }
         DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        DbSet<OrderForDetail> OrderDetail { get; set; }
-        DbSet<OrderForHeader> OrderHeaders { get; set; } 
+     public   DbSet<OrderForDetail> OrderDetail { get; set; }
+      public  DbSet<OrderForHeader> OrderHeaders { get; set; } 
 
     }
 }

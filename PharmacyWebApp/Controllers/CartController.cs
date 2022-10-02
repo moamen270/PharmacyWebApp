@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Models;
 using PharmacyWebApp.Models.ViewModels;
 using PharmacyWebApp.Utility;
+using Stripe.Checkout;
 using System.Security.Claims;
 
 namespace PharmacyWebApp.Controllers
@@ -13,13 +15,15 @@ namespace PharmacyWebApp.Controllers
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailSender _emailSender;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
         public int OrderTotal { get; set; }
 
-        public CartController( IUnitOfWork unitOfWork)
+        public CartController( IUnitOfWork unitOfWork, IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
+            _emailSender = emailSender;
         }
 
 
@@ -113,16 +117,85 @@ namespace PharmacyWebApp.Controllers
                 _unitOfWork.OrderForDetail.Add(orderDetail);
                 _unitOfWork.Save();
             }
-            _unitOfWork.ShoppingCart.DeleteRange(ShoppingCartVM.ListCart);
+
+            //stripe settings 
+            var domain = "https://localhost:44306/";
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string>
+                {
+                  "card",
+                },
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = domain + $"cart/OrderConfirmation?id={ShoppingCartVM.OrderForHeader.Id}",
+                CancelUrl = domain + $"cart/index",
+            };
+
+            foreach (var item in ShoppingCartVM.ListCart)
+            {
+
+                var sessionLineItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)(item.Price * 100),//20.00 -> 2000
+                        Currency = "usd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Product.Name,
+                        },
+
+                    },
+                    Quantity = item.Count,
+                };
+                options.LineItems.Add(sessionLineItem);
+
+            }
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            _unitOfWork.OrderForHeader.UpdateStripePaymentID(ShoppingCartVM.OrderForHeader.Id, session.Id, session.PaymentIntentId);
             _unitOfWork.Save();
-            return RedirectToAction("Index","Home");
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
+        
+
+
+
+
+
+            //_unitOfWork.ShoppingCart.DeleteRange(ShoppingCartVM.ListCart);
+            //_unitOfWork.Save();
+            //return RedirectToAction("Index","Home");
         }
 
 
 
 
 
+        public IActionResult OrderConfirmation(int id)
+        {
+            OrderForHeader orderHeader = _unitOfWork.OrderForHeader.GetFirstOrDefaultForShopping(u => u.Id == id, includeProperties: "ApplicationUser");
+            if (orderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment)
+            {
+                var service = new SessionService();
+                Session session = service.Get(orderHeader.SessionId);
+                //check the stripe status
+                if (session.PaymentStatus.ToLower() == "paid")
+                {
+                    _unitOfWork.OrderForHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
+                    _unitOfWork.Save();
+                }
+            }
+            //_emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order - Pharmacy App", "<p>New Order Created</p>");
+            List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAllByDeafult(u => u.ApplicationUserId ==orderHeader.UserId).ToList();
+            _unitOfWork.ShoppingCart.DeleteRange(shoppingCarts);
+            _unitOfWork.Save();
+            return View(id);
 
+        }
 
 
 
