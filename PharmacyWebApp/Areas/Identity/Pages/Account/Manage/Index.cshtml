@@ -4,14 +4,13 @@
  
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
-<br /><br />
-<div class="col-8">
+
+<div class="">
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <form id="profile-form" method="post" enctype="multipart/form-data">
     <div class="row ">
-    <div class="col-lg-7 ">
-       
-        <div class="">
+    
+        <div class="col-lg-6">
              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating  mb-2">
                 <input asp-for="Input.FirstName" class=" form-control"  />
@@ -43,13 +42,12 @@
                 <input asp-for="Input.PostalCode" class="form-control" />
                 <label asp-for="Input.PostalCode" class="ms-2 form-label"></label>
             </div>
-            <br />
+           
             
-            <button did="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary mb-2">Save</button>
         </div>
           
-        </div>
-            <div class="col-md-5">
+       
+            <div class="col-lg-6 col-md-12 col-sm-12 col-sm-12">
                 <div class="form-group">
                     <label asp-for="Input.ProfilePicture" class="w-100"></label>
                     @if (Model.Input.ProfilePicture != null)
@@ -60,7 +58,7 @@
                     {
                         <img id="profilePicture" alt="profile" class="profile-picture" src="~/images/avatar-male.jpg" />
                     }
-                    <div class="custom-file mt-2">
+                    <div class="col-auto custom-file mt-2">
                         <input type="file"
                                accept="image/*"
                                asp-for="Input.ProfilePicture"
@@ -70,13 +68,17 @@
                         <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
                     </div>
                 </div>
+                
             </div>
+            <div class="col-12">
+                             <button did="update-profile-button" type="submit" class="col-auto btn btn-lg btn-primary mb-2">Save</button>
 
-       
+            </div>
+        </div>
     
 
   
-</div>
+
 
                   
 </form>
