@@ -10,9 +10,9 @@
            
 
 	<br /><br />
-<div class="container bg-light m-5">
-	<div class="row m-5 p-5  mt-60-px">
-		<div class="col-md-3">
+<div class="bg-light m-5">
+	<div class="row">
+		<div class="col-md-3 col-sm-12">
 			@if(Model.ProductPicture != null)
 			{
 				<img src="data:image/*;base64,@(Convert.ToBase64String(Model.ProductPicture))" class="profile-picture" alt="@Model.Name" />
@@ -22,7 +22,7 @@
 				<img src="~/images/Medicalll.png" class="profile-picture" alt="@Model.Name" />
 			}
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-7 col-sm-12">
 			<div class="d-flex justify-content-between mb-3">
 				<h3>@Model.Name</h3>
 				<span class="mt-2">
@@ -39,44 +39,52 @@
 				@Model.Brand.Name
 			</span>
 			<p class="text-justify mt-3">@Model.Description</p>
-			<a asp-controller="Home" asp-action="Details" asp-route-productid="@Model.Id" class="btn btn-sm btn-primary">Buy Now</a>
-			<a class="btn btn-sm btn-primary">Add to Cart</a>
+			<div class="">
+				<a asp-controller="Home" asp-action="Details" asp-route-productid="@Model.Id" style="width:150px" class="btn btn-sm btn-primary col-5">Buy Now</a>
+				<a class="btn btn-sm btn-primary my-3 col-5" style="width:150px">Add to Cart</a>
+			</div>
+			
 		</div>
-		<div class="row">
-			<div class="col-6">
-				<div class="container row border border-3 rounded m-5">
+		
+			
+			
+			<div class=" ">
+				<div class="  border border-3 col-10 rounded m-5">
 					<h4 class="my-3">Reviews</h4>
-					<div class="row ">
+					
 					@foreach(var item in Model.Reviews)
 					{
-						<div class="card m-1">
+						<div class="card mb-3">
+						<div class=" m-3">
 							<h6>@item.User.FirstName @item.User.LastName</h6>
-							<div class="col-6 ">																
 							<span class="mt-2">
 							<i class="bi bi-star-fill text-warning"></i>
 							<span class="text-muted">@item.Rate.ToString("0.0")</span>
-							</span>			
+							</span>		
+							<div class="col-12 ">																
+								
 							<p>
 								@item.Comment
 							</p>
 							</div>
-							<span class="text-muted">@item.AddedDateTime</span>
+							<span class="text-muted">@item.AddedDateTime.</span>
 						</div>
-						
+						</div>
 					}
-					</div>
+					
 				</div>
 			</div>
-			<div class="col-6">
+
+			<div class="">
 				@if (SignInManager.IsSignedIn(User))
 				{
-					<div class="container row border border-3 rounded m-5">
+					<div class="container row border border-3 col-10 rounded m-5">
 						<h4 class="my-3"> Add Review</h4>
 		
 						<form  class="  " method="post" asp-action="AddReview">
 					
 							<input hidden asp-for="Id" />
-							<div class="mb-3 col-3 ">
+							<div class="mb-3 col ">
 								<i class="bi bi-star-fill text-warning"></i>
 								<label asp-for="Rate"></label>
 								<input  asp-for="Rate" max="5" min="1" class="form-control" value="1"/>	
@@ -93,7 +101,9 @@
 					</div>
 				}
 			</div>
-		</div>
+			
+		
+
 	</div>
 </div>
 

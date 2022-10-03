@@ -15,8 +15,6 @@ namespace PharmacyWebApp.Migrations
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int");
-           
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -28,8 +26,6 @@ namespace PharmacyWebApp.Migrations
                 nullable: false,
                 oldClrType: typeof(double),
                 oldType: "float");
-
-            
         }
     }
 }

@@ -24,7 +24,6 @@ function Delete(url) {
             })
         }
     });
-
 }
 
 function Create(url) {
@@ -53,5 +52,4 @@ function Create(url) {
             })
         }
     });
-
 }

@@ -15,6 +15,7 @@ namespace PharmacyWebApp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
+
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManger)
         {
             _logger = logger;
@@ -24,7 +25,7 @@ namespace PharmacyWebApp.Controllers
 
         public async Task<IActionResult> Index(int? pageNumber = 1)
         {
-            var products = await _unitOfWork.Product.GetAllAsync(new string[] { "Category","Brand" });
+            var products = await _unitOfWork.Product.GetAllAsync(new string[] { "Category", "Brand" });
             int pageSize = 6;
             return View(await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize));
         }
@@ -40,6 +41,7 @@ namespace PharmacyWebApp.Controllers
 
             return View(cartobj);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -52,10 +54,8 @@ namespace PharmacyWebApp.Controllers
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefaultForShopping(
                 u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
 
-
             if (cartFromDb == null)
             {
-
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
                 _unitOfWork.Save();
                 HttpContext.Session.SetInt32(SD.SessionCart,
@@ -67,11 +67,8 @@ namespace PharmacyWebApp.Controllers
                 _unitOfWork.Save();
             }
 
-
-            return RedirectToAction(nameof(Index),1);
+            return RedirectToAction(nameof(Index), 1);
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

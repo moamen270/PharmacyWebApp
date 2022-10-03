@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyWebApp.Models;
-using PharmacyWebApp.Utility;
 
 namespace PharmacyWebApp.Controllers.Api
 {
@@ -17,7 +16,6 @@ namespace PharmacyWebApp.Controllers.Api
         {
             _userManager = userManager;
         }
-
 
         [HttpDelete]
         public async Task<IActionResult> DeleteUser(string userId)

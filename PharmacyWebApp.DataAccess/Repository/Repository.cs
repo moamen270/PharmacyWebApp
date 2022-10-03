@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PharmacyWebApp.DataAccess.Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PharmacyWebApp.DataAccess.Repository
 {
@@ -13,12 +8,14 @@ namespace PharmacyWebApp.DataAccess.Repository
     {
         private readonly ApplicationDbContext _context;
         internal DbSet<T> dbSet;
+
         public Repository(ApplicationDbContext context)
         {
             _context = context;
             //_db.ShoppingCarts.Include(u => u.Product).Include(u=>u.CoverType);
             this.dbSet = _context.Set<T>();
         }
+
         public T Add(T entity)
         {
             _context.Set<T>().Add(entity);
@@ -53,10 +50,9 @@ namespace PharmacyWebApp.DataAccess.Repository
 
         public T Get(int id)
         {
-
             return _context.Set<T>().Find(id);
-
         }
+
         public IEnumerable<T> GetAllByDeafult(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -84,6 +80,7 @@ namespace PharmacyWebApp.DataAccess.Repository
                 }
             return result.ToList();
         }
+
         public async Task<IEnumerable<T>> GetAllAsync(string[]? include = null)
         {
             IQueryable<T> result = _context.Set<T>().AsNoTracking();
@@ -160,9 +157,7 @@ namespace PharmacyWebApp.DataAccess.Repository
             return await _context.Set<T>().CountAsync(filter);
         }
 
-
-
-        public async Task<IEnumerable<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter,string[]? include = null)
+        public async Task<IEnumerable<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter, string[]? include = null)
         {
             var query = _context.Set<T>().Where(filter);
             if (include != null)
@@ -174,7 +169,6 @@ namespace PharmacyWebApp.DataAccess.Repository
             }
 
             return await query.ToListAsync();
-
         }
 
         public T GetFirstOrDefaultForShopping(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
@@ -207,9 +201,6 @@ namespace PharmacyWebApp.DataAccess.Repository
                 }
                 return query.FirstOrDefault();
             }
-
         }
-
-
     }
 }

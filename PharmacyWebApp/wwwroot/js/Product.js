@@ -15,16 +15,13 @@ function Delete(url) {
                 success: function (data) {
                     if (data.success) {
                         location.reload();
-                        
                     }
                     else {
-                       
                     }
                 }
             })
         }
     });
-
 }
 
 function Create(url) {
@@ -44,14 +41,11 @@ function Create(url) {
                 success: function (data) {
                     if (data.success) {
                         location.reload();
-                     
                     }
                     else {
-                       
                     }
                 }
             })
         }
     });
-
 }

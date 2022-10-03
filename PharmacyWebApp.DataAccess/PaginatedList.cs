@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
-namespace PharmacyWebApp.DataAccess
+﻿namespace PharmacyWebApp.DataAccess
 {
     public class PaginatedList<T> : List<T>
     {
@@ -26,7 +20,7 @@ namespace PharmacyWebApp.DataAccess
         public static async Task<PaginatedList<T>> CreateAsync(IEnumerable<T> source, int pageIndex, int pageSize)
         {
             var count = source.Count();
-            var items =  source.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return new PaginatedList<T>(items, count, pageIndex, pageSize);
         }
     }

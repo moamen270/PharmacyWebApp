@@ -14453,7 +14453,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     color: #777 !important;
 }
 
-/*    
+/*
 Input Style
 ------------------------*/
 .form-group {
@@ -21445,15 +21445,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     padding: 5px;
 }
 
-
-
 .avatar-one {
-    border-radius:50%;
+    border-radius: 50%;
     width: 90px;
     height: 90px;
     object-fit: cover;
 }
-
-
 
 /*# sourceMappingURL=style.css.map */

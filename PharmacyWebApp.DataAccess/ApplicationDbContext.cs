@@ -7,10 +7,8 @@ namespace PharmacyWebApp.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-    
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -24,19 +22,17 @@ namespace PharmacyWebApp.DataAccess
             builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
-            
-
         }
-        DbSet<Product> Products { get; set; }
-        DbSet<Brand> Brands { get; set; }
-        DbSet<Category> Categories { get; set; }
-        DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        DbSet<Review> Reviews { get; set; }
-        DbSet<ShopCart> ShopCarts { get; set; }
-        DbSet<CreditCard> CreditCards { get; set; }
-        DbSet<ShoppingCart> ShoppingCarts { get; set; }
-     public   DbSet<OrderForDetail> OrderDetail { get; set; }
-      public  DbSet<OrderForHeader> OrderHeaders { get; set; } 
 
+        private DbSet<Product> Products { get; set; }
+        private DbSet<Brand> Brands { get; set; }
+        private DbSet<Category> Categories { get; set; }
+        private DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        private DbSet<Review> Reviews { get; set; }
+        private DbSet<ShopCart> ShopCarts { get; set; }
+        private DbSet<CreditCard> CreditCards { get; set; }
+        private DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<OrderForDetail> OrderDetail { get; set; }
+        public DbSet<OrderForHeader> OrderHeaders { get; set; }
     }
 }

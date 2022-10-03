@@ -13,22 +13,18 @@
         <title>@ViewData["Title"] - PharmacyWebApp</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-
-
         <link rel="stylesheet" href="~/plugins/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-       
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-       
-
         <!-- Libraries Stylesheet -->
-        <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        
         <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
         <!-- themefy-icon -->
         <link rel="stylesheet" href="~/plugins/themify-icons/themify-icons.css">     
         <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
         <link href="~/css/style.css" rel="stylesheet">
 
         <!--Favicon-->
@@ -39,6 +35,9 @@
         <header class="sticky-top navigation bg-white">
             <div class=container>
                 <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="">
+                        <a class="navbar-brand " asp-controller="Home" asp-action="Index"> <img class="logo"   src="~/images/Logo.png" alt="Pharamacy"/></a>
+                    </div>
                    
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -46,9 +45,7 @@
                     
                     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                         <ul class="navbar-nav  align-items-center">
-                            <li class="nav-item">
-                                <a class=navbar-brand asp-controller="Home" asp-action="Index"> <img class="img-fluid" src="~/images/Logo.png" alt="Pharamacy"></a>
-
+                            <li class="nav-item">                               
                             </li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="About" asp-action="Index">About</a></li>
@@ -67,7 +64,7 @@
                             {
                                 <li class="nav-item dropdown onclick"> <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Manage </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a class="dropdown-item" asp-controller="Manage" asp-action="Index">Dashboard</a></li>                    
+                                                            
                                         <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">Product</a></li>
                                         <li><a class="dropdown-item" asp-controller="Brand" asp-action="Index">Brand</a></li> 
                                         <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a></li>
@@ -88,11 +85,11 @@
         
                                 @if (SignInManager.IsSignedIn(User))
                                 {
-                                    @if(UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+                                    @if((await UserManager.GetUserAsync(User)).ProfilePicture != null)
                                     {
 
                                     <li class="nav-item ml-3 ">
-                                        <img id="" class="avatar rounded-circle" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))" />
+                                        <img id="" class="avatar rounded-circle" src="data:image/*;base64,@(Convert.ToBase64String((await UserManager.GetUserAsync(User)).ProfilePicture))" />
 
                                     </li>
                                     }
@@ -104,7 +101,7 @@
                                          </li>            
                                     }               
                                     <li class="nav-item dropdown onclick">
-                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" >@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</a>
+                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" >@((await UserManager.GetUserAsync(User)).FirstName) @((await UserManager.GetUserAsync(User)).LastName)</a>
                                       <ul class="dropdown-menu" role="menu">
                                           <li> <a id="manage" class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile Setting</a></li>                 
                                           <li><div class="dropdown-divider"></div></li>
@@ -120,17 +117,13 @@
                                 }
                                 else
                                 {
-                                <li class="nav-item">
-                                    <a class=" btn btn-sm btn-outline-primary ml-lg-4" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>        
+                                <li class="nav-item   my-2">
+                                    <a class="btn btn-sm btn-width btn-outline-primary ml-lg-4" id="login" asp-area="Identity" asp-page="/Account/Login"> Login </a>        
                                 </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Donate" asp-action="Index" class="btn btn-sm btn-primary ml-lg-4">Donate</a>
+                                <li class="nav-item  ">
+                                    <a asp-controller="Donate" asp-action="Index"  class=" btn btn-sm btn-width btn-primary ml-lg-4">Donate</a>
                                 </li>
-                                }
-     
-
-      
-                            
+                                }                            
                             </ul>
                            
                             
