@@ -2,51 +2,49 @@
 
 <form method="post">
     <input hidden asp-for="ProductId" />
-    <div class="card  container pt-4">
-        <div class="card-header bg-primary text-light ml-0  row ">
-            <div class="col-12 col-md-6">
+    <div class="card " >
+        <div class="">
+        <div class="card-header bg-primary text-light">
+            <div class="text-start ">
                 <h1 class="text-white-50">@Model.Product.Name</h1>
             </div>
-            <div class="col-12 col-md-6 text-end pt-4">
-                <span class="badge bg-info pt-2" style="height:30px;">@Model.Product.Brand.Name</span>
-                <span class="badge bg-warning pt-2" style="height:30px;">@Model.Product.Category.Name</span>
+            <div class="text-end  ">
+                <span class="badge bg-info "style="height:30px;">@Model.Product.Brand.Name</span>
+                <span class="badge bg-warning "style="height:30px;">@Model.Product.Category.Name</span>
             </div>
         </div>
-        <div class="card-body row container">
-            <div class="container rounded p-2">
+        <div class="card-body  ">
+            <div class=" rounded ">
                 <div class="row">
-                    <div class="col-8 col-lg-8">
-
-                        <div class="row pl-2">
-                        </div>
-                        <div class="row pl-2">
+                    <div class=" col-lg-5 col-sm-12 col-md-12 col-xs-12 ">
+                        <div class="">
                             <h5 class="text-muted pb-2">List Price: <strike>@Model.Product.ListPrice.ToString("c")</strike></h5>
                         </div>
-                        <div class="row text-center pl-2">
-                            <div class="p-1 col-2  border-bottom">
-                                <div>Quantity</div>
+                        <div class=" text-center pl-2">
+                            <div class="p-1 col-lg-12 col-sm-12 col-md-12 col-xs-12  border-bottom">
+                                <div><h6>Quantity</h6></div>
                             </div>
-                            <div class="p-1 col-2  border-bottom">
-                                <div>1-50</div>
-                            </div>
+                           
                         </div>
-                        <div class="row text-center pl-2" style="color:maroon; font-weight:bold">
-                            <div class="p-1 col-2 ">
+                        <div class=" text-center pl-2" style="color:maroon; font-weight:bold">
+                            <div class="p-1 col-lg-12 col-sm-12 col-md-12 col-xs-12 ">
                                 <div>Price</div>
-                            </div>
-                            <div class="p-1 col-2 ">
                                 <div>@Model.Product.Price.ToString("c")</div>
                             </div>
+                           
                         </div>
-                        <div class="row pl-2">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 pl-2">
                             <p class="text-secondary">@Html.Raw(Model.Product.Description)</p>
                         </div>
-                        <div class="row pl-2">
-                            <div class="col-2 text-primary"><h4>Count</h4></div>
-                            <div class="col-10"><input asp-for="Count" class="form-control" /></div>
+                        <div class=" pl-2">
+                            
+                            <div class="col-10">
+                                <label asp-for="Count"></label>
+                                <input asp-for="Count" class="form-control w-50" />
+                            </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-3 offset-lg-1 text-center">
+                    <div class=" col-lg-5 col-sm-12 col-md-12 col-xs-12 ">
                         <img class="shop-picture" src="data:image/*;base64,@(Convert.ToBase64String(Model.Product.ProductPicture))" alt="@Model.Product.Name">
                     </div>
                 </div>
@@ -62,5 +60,6 @@
                 </div>
             </div>
         </div>
+         </div>
     </div>
 </form>

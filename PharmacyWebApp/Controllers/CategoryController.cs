@@ -16,9 +16,10 @@ namespace PharmacyWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-             IEnumerable<Category> obj = await _unitOfWork.Category.GetAllAsync();
+            IEnumerable<Category> obj = await _unitOfWork.Category.GetAllAsync();
             return View(obj);
         }
+
         //POST
         [HttpPost]
         public async Task<IActionResult> Create()
@@ -40,9 +41,7 @@ namespace PharmacyWebApp.Controllers
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Brand Deleted Successfully" });
-
         }
-
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -71,12 +70,6 @@ namespace PharmacyWebApp.Controllers
             }
             return View(obj);
         }
-
-
-  
-
-
- 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,19 +1,17 @@
-﻿using PharmacyWebApp.DataAccess.Repository.IRepository;
+﻿using Microsoft.AspNetCore.Mvc;
+using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Utility;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace PharmacyWebApp.ViewComponents
 {
     public class ShoppingCartViewComponent : ViewComponent
     {
         private readonly IUnitOfWork _unitOfWork;
+
         public ShoppingCartViewComponent(IUnitOfWork unitOfWork)
         {
-            _unitOfWork= unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

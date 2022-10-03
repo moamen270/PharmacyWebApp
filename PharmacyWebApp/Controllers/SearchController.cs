@@ -8,26 +8,21 @@ namespace PharmacyWebApp.Controllers
 {
     public class SearchController : Controller
     {
-       
-
         private readonly ILogger<ShopController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-
 
         public SearchController(ILogger<ShopController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
-
         }
-
 
         public IActionResult Index(string searchString)
         {
             ViewData["SearchString"] = searchString;
             return View();
         }
-        
+
         public async Task<IActionResult> Result(string searchString)
         {
             ViewData["SearchString"] = searchString;
@@ -38,17 +33,15 @@ namespace PharmacyWebApp.Controllers
                 return View(await PaginatedList<Product>.CreateAsync(products, 1, 9));
             }
 
-            var productsResult = await _unitOfWork.Product.GetAllByFilterAsync(e=> e.Name.Contains(searchString),new string[] { "Category", "Brand" });
-            if(productsResult.FirstOrDefault() != null)
+            var productsResult = await _unitOfWork.Product.GetAllByFilterAsync(e => e.Name.Contains(searchString), new string[] { "Category", "Brand" });
+            if (productsResult.FirstOrDefault() != null)
             {
                 ViewData["ResultCount"] = productsResult.Count();
                 return View(await PaginatedList<Product>.CreateAsync(productsResult, 1, 9));
             }
-            
-            else 
+            else
                 return RedirectToAction(nameof(Index), new { searchString });
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

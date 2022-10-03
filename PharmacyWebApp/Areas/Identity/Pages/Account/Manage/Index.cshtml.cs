@@ -2,14 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PharmacyWebApp.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
 {
@@ -55,22 +52,26 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
             [Required]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
+
             [Required]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
-           
+
             [Display(Name = "StreetAddress")]
             public string StreetAddress { get; set; }
+
             [Display(Name = "City")]
             public string City { get; set; }
+
             [Display(Name = "State")]
             public string State { get; set; }
+
             [Display(Name = "PostalCode")]
             public string PostalCode { get; set; }
 
             [Display(Name = "Profile Picture")]
             public byte[] ProfilePicture { get; set; }
-            
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -98,7 +99,6 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
                 PostalCode = user.PostalCode,
                 PhoneNumber = phoneNumber,
                 ProfilePicture = user.ProfilePicture,
-                     
             };
         }
 
@@ -165,14 +165,12 @@ namespace PharmacyWebApp.Areas.Identity.Pages.Account.Manage
             {
                 user.PostalCode = Input.PostalCode;
                 await _userManager.UpdateAsync(user);
-
             }
-         
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 user.PhoneNumber = Input.PhoneNumber;
                 await _userManager.UpdateAsync(user);
-
             }
 
             if (Request.Form.Files.Count > 0)

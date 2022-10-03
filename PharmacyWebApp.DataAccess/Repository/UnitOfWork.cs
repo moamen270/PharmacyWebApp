@@ -1,9 +1,4 @@
 ﻿using PharmacyWebApp.DataAccess.Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PharmacyWebApp.DataAccess.Repository
 {
@@ -37,8 +32,6 @@ namespace PharmacyWebApp.DataAccess.Repository
             OrderForHeader = new OrderForHeaderRepository(_context);
             OrderForDetail = new OrderForDetailRepository(_context);
         }
-
-        
 
         public void Dispose()
         {

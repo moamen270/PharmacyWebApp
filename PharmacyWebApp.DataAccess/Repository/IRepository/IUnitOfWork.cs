@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PharmacyWebApp.DataAccess.Repository.IRepository
+﻿namespace PharmacyWebApp.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -17,7 +11,7 @@ namespace PharmacyWebApp.DataAccess.Repository.IRepository
         IShoppingCartRepository ShoppingCart { get; }
         IOrderForHeaderRepository OrderForHeader { get; }
         IOrderForDetailRepository OrderForDetail { get; }
-        int Save();
 
+        int Save();
     }
 }

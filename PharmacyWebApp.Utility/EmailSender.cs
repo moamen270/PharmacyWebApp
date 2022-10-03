@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PharmacyWebApp.Utility
 {
@@ -17,7 +12,7 @@ namespace PharmacyWebApp.Utility
         {
             var fromMail = "mh600789@outlook.com";
             var fromPassword = "WorkWork44";
-            
+
             var message = new MailMessage();
 
             message.From = new MailAddress(fromMail);
@@ -30,7 +25,6 @@ namespace PharmacyWebApp.Utility
                 Port = 587,
                 Credentials = new NetworkCredential(fromMail, fromPassword),
                 EnableSsl = true,
-                
             };
             smtpClient.Send(message);
         }

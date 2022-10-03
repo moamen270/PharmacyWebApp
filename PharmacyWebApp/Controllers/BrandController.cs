@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PharmacyWebApp.DataAccess.Repository;
 using PharmacyWebApp.DataAccess.Repository.IRepository;
 using PharmacyWebApp.Models;
 using System.Diagnostics;
+
 namespace PharmacyWebApp.Controllers
 {
     public class BrandController : Controller
@@ -19,7 +19,7 @@ namespace PharmacyWebApp.Controllers
             IEnumerable<Brand> obj = await _unitOfWork.Brand.GetAllAsync();
             return View(obj);
         }
-       
+
         //POST
         [HttpPost]
         public async Task<IActionResult> Create()
@@ -29,8 +29,6 @@ namespace PharmacyWebApp.Controllers
 
             return Json(new { success = true, message = "Brand Created Successfully" });
         }
-
-
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int? id)
@@ -43,13 +41,10 @@ namespace PharmacyWebApp.Controllers
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Brand Deleted Successfully" });
-
         }
 
-
-
         public async Task<IActionResult> Edit(int? id)
-        {           
+        {
             var obj = await _unitOfWork.Brand.GetFirstOrDefaultAsync(u => u.Id == id);
 
             if (obj == null)
@@ -74,6 +69,7 @@ namespace PharmacyWebApp.Controllers
             }
             return View(obj);
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

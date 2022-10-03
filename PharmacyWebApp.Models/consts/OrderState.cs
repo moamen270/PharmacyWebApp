@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PharmacyWebApp.Models.consts
+﻿namespace PharmacyWebApp.Models.consts
 {
     public static class OrderState
     {
@@ -13,5 +7,4 @@ namespace PharmacyWebApp.Models.consts
         public const string Pending = "Pending";
         public const string Completed = "Completed";
     }
-
 }

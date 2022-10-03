@@ -19,7 +19,6 @@ namespace PharmacyWebApp.Migrations
             migrationBuilder.DropColumn(
                 name: "UserId",
                 table: "Reviews");
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -43,7 +42,6 @@ namespace PharmacyWebApp.Migrations
                 principalTable: "Users",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
-
         }
     }
 }

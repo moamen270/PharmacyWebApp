@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PharmacyWebApp.Models.ViewModels;
-using System.Threading.Tasks;
 
 namespace PharmacyWebApp.Controllers
 {
@@ -16,7 +15,6 @@ namespace PharmacyWebApp.Controllers
         {
             _roleManager = roleManager;
         }
-
 
         public async Task<IActionResult> Index()
         {
@@ -38,7 +36,7 @@ namespace PharmacyWebApp.Controllers
             }
 
             await _roleManager.CreateAsync(new IdentityRole(model.Name.Trim()));
-                                    //("Index");
+            //("Index");
             return RedirectToAction(nameof(Index));
         }
     }

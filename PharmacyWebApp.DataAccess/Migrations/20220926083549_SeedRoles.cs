@@ -12,7 +12,7 @@ namespace PharmacyWebApp.Migrations
                 table: "Roles",
                 columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
                 values: new object[] { Guid.NewGuid().ToString(), "User", "User".ToUpper(), Guid.NewGuid().ToString() }
-            
+
                 );
             migrationBuilder.InsertData(
                 table: "Roles",

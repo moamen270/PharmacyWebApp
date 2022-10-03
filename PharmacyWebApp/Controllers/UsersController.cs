@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
 using PharmacyWebApp.Models;
 using PharmacyWebApp.Models.ViewModels;
 
@@ -20,7 +18,6 @@ namespace PharmacyWebApp.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
-
 
         public async Task<IActionResult> Index()
         {
@@ -43,23 +40,17 @@ namespace PharmacyWebApp.Controllers
             if (user == null)
                 return NotFound();
 
-       
-
             var viewModel = new ProfileFormVM
             {
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                UserName= user.UserName,
+                UserName = user.UserName,
                 Email = user.Email,
-
             };
 
             return View(viewModel);
         }
-
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -75,7 +66,7 @@ namespace PharmacyWebApp.Controllers
 
             var userWithSameEmail = await _userManager.FindByEmailAsync(model.Email);
 
-            if(userWithSameEmail != null && userWithSameEmail.Id != model.Id)
+            if (userWithSameEmail != null && userWithSameEmail.Id != model.Id)
             {
                 ModelState.AddModelError("Email", "This Email is Already Token Please Try another Email");
                 return View(model);
@@ -95,9 +86,6 @@ namespace PharmacyWebApp.Controllers
             await _userManager.UpdateAsync(user);
             return RedirectToAction(nameof(Index));
         }
-
-
-
 
         public async Task<IActionResult> ManageRoles(string userId)
         {
