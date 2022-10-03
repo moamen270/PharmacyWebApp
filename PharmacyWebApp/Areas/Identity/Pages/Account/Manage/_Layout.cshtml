@@ -1,52 +1,44 @@
 ﻿@{
-        Layout = "~/Views/Shared/_Layout.cshtml";
-      
- }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
 @using PharmacyWebApp.Models
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
 
- 
- <br /><br /> 
-<div class="card ">
-   <div class="">
-       <div class="d-flex">
-          <div class="p-2 flex-grow-1">
-              <h2 class="m-5">General Account Settings</h2>
-          </div>
-          
-          <div class="p-2 m-5">
-              <a asp-controller="Home" asp-action="Index" class=" btn btn btn-secondary rounded ms-5 align-self-end">Go Back</a>
-          </div>
-        </div>
-        
-    </div>
-   <div class="">
-    <div class="row   rounded  ">        
-        <div class="col-md-3 mb-4 mx-4  ">    
+
+<br />
+<br />
+<div class="card p-5">
+
+
+
+
+
+    <div class="">
+        <div class="rounded  ">
+            <h3 class=" card-title m-5">Account Settings</h3>
+            @*<div class="col-md-3 mb-4 mx-4  ">
             <div class="flex-column">
-                <ul class="nav nav-pills  rounded p-3 flex-column ">                                 
-                <li class="nav-item text-light"><a class="nav-link  @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-                <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-                <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
-                @if (hasExternalLogins)
-                {
-                    <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
-                }
-                <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+            <ul class="nav nav-pills  rounded p-3 flex-column ">
+            <li class="nav-item text-light"><a class="nav-link  @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
+            <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+            <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+            @if (hasExternalLogins)
+            {
+            <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+            }
+            <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
             </ul>
-            
+
             </div>
+            </div>*@
+            @RenderBody()
         </div>
-        <br /><br /> <br /> <br />
-       
-            @RenderBody()       
-        </div>
-        
+
     </div>
-      
     <br /><br />
 </div>
 
