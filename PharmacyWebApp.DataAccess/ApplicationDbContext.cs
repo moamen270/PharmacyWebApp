@@ -22,6 +22,7 @@ namespace PharmacyWebApp.DataAccess
             builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+            builder.Entity<Prescription>().HasOne(x => x.Patient).WithMany().HasForeignKey(x => x.PatientId).OnDelete(DeleteBehavior.NoAction);
         }
 
         private DbSet<Product> Products { get; set; }
@@ -34,5 +35,7 @@ namespace PharmacyWebApp.DataAccess
         private DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<OrderForDetail> OrderDetail { get; set; }
         public DbSet<OrderForHeader> OrderHeaders { get; set; }
+        public DbSet<Prescription> Prescription { get; set; }
+        public DbSet<PrescriptionDetails> PrescriptionDetail { get; set; }
     }
 }

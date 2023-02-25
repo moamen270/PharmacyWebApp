@@ -116,7 +116,7 @@ namespace PharmacyWebApp.Controllers
             }
 
             //stripe settings
-            var domain = "http://thepharmacyplus-001-site1.btempurl.com/";
+            var domain = "https://localhost:44306/";
             var options = new SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string>

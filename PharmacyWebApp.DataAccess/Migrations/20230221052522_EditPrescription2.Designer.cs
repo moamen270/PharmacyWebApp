@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PharmacyWebApp.DataAccess;
 
@@ -11,9 +12,10 @@ using PharmacyWebApp.DataAccess;
 namespace PharmacyWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230221052522_EditPrescription2")]
+    partial class EditPrescription2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -424,7 +426,7 @@ namespace PharmacyWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("PatientId")
+                    b.Property<string>("PationtId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -435,7 +437,7 @@ namespace PharmacyWebApp.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("PationtId");
 
                     b.ToTable("Prescription");
                 });
@@ -710,15 +712,15 @@ namespace PharmacyWebApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PharmacyWebApp.Models.ApplicationUser", "Patient")
+                    b.HasOne("PharmacyWebApp.Models.ApplicationUser", "Pationt")
                         .WithMany()
-                        .HasForeignKey("PatientId")
+                        .HasForeignKey("PationtId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Doctor");
 
-                    b.Navigation("Patient");
+                    b.Navigation("Pationt");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.PrescriptionDetails", b =>

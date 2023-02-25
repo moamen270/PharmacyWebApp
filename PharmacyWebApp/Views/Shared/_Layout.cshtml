@@ -52,6 +52,7 @@
                             <li class="nav-item"><a class="nav-link" asp-controller="Services" asp-action="Index">Services</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Team" asp-action="Index">Team</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Index">Shop</a></li>
+
                             <li class="nav-item">
                                 <a class="nav-link"   asp-controller="Cart" asp-action="Index">
                                 @await Component.InvokeAsync("ShoppingCart")
@@ -70,6 +71,8 @@
                                         <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a></li>
                                         <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index">Manage Roles</a></li>
                                         <li><a class="dropdown-item" asp-controller="Users" asp-action="Index">Manage Users</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Prescription" asp-action="Index">Prescription</a></li>
+
                                         <li><div class="dropdown-divider"></div></li>
                                     </ul>
                                </li>

@@ -17,7 +17,7 @@ namespace PharmacyWebApp.Controllers
         public async Task<IActionResult> Index()
         {
             IEnumerable<Brand> obj = await _unitOfWork.Brand.GetAllAsync();
-            return View(obj);
+            return Json(new { obj });
         }
 
         //POST

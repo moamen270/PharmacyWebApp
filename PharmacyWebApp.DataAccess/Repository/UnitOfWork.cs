@@ -19,6 +19,10 @@ namespace PharmacyWebApp.DataAccess.Repository
         public IOrderForHeaderRepository OrderForHeader { get; private set; }
         public IOrderForDetailRepository OrderForDetail { get; private set; }
 
+        public IPrescriptionRepository Prescription { get; private set; }
+
+        public IPrescriptionDetailsRepository PrescriptionDetails { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -31,6 +35,8 @@ namespace PharmacyWebApp.DataAccess.Repository
             ShoppingCart = new ShoppingCartRepository(_context);
             OrderForHeader = new OrderForHeaderRepository(_context);
             OrderForDetail = new OrderForDetailRepository(_context);
+            Prescription = new PrescriptionRepository(_context);
+            PrescriptionDetails = new PresciptionDetailsRepository(_context);
         }
 
         public void Dispose()

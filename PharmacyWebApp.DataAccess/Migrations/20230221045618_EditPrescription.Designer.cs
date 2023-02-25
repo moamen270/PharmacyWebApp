@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PharmacyWebApp.DataAccess;
 
@@ -11,9 +12,10 @@ using PharmacyWebApp.DataAccess;
 namespace PharmacyWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230221045618_EditPrescription")]
+    partial class EditPrescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -424,18 +426,15 @@ namespace PharmacyWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("PatientId")
+                    b.Property<string>("PationtId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("dispensing")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("PationtId");
 
                     b.ToTable("Prescription");
                 });
@@ -448,17 +447,17 @@ namespace PharmacyWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("BeforeAfterMeal")
+                    b.Property<bool>("BeforeAfter")
                         .HasColumnType("bit");
 
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Dosage")
+                    b.Property<int>("Dose")
                         .HasColumnType("int");
 
-                    b.Property<int>("Dose")
+                    b.Property<int>("DoseRate")
                         .HasColumnType("int");
 
                     b.Property<int>("PrescriptionId")
@@ -710,15 +709,15 @@ namespace PharmacyWebApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PharmacyWebApp.Models.ApplicationUser", "Patient")
+                    b.HasOne("PharmacyWebApp.Models.ApplicationUser", "Pationt")
                         .WithMany()
-                        .HasForeignKey("PatientId")
+                        .HasForeignKey("PationtId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Doctor");
 
-                    b.Navigation("Patient");
+                    b.Navigation("Pationt");
                 });
 
             modelBuilder.Entity("PharmacyWebApp.Models.PrescriptionDetails", b =>

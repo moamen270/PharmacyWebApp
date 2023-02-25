@@ -11,6 +11,8 @@
         IShoppingCartRepository ShoppingCart { get; }
         IOrderForHeaderRepository OrderForHeader { get; }
         IOrderForDetailRepository OrderForDetail { get; }
+        IPrescriptionRepository Prescription { get; }
+        IPrescriptionDetailsRepository PrescriptionDetails { get; }
 
         int Save();
     }

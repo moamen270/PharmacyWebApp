@@ -1,0 +1,79 @@
+@using PharmacyWebApp.Models.ViewModels
+@model PrescriptionVM 
+
+
+@{
+	ViewData["Title"] = @Model.Id > 0 ? "Edit" : "Create";
+	
+}
+
+<form method="post" asp-action="@(Model.Id > 0? "Edit" : "Create")" enctype="multipart/form-data">
+	<input asp-for="Id" hidden />
+	<input asp-for="DoctorId" hidden />
+	<input asp-for="CreationDateTime" hidden />
+	<input asp-for="dispensing" hidden />	
+
+
+	<div class=" my-4 row col-12">
+		<div class="col-10  ">
+			<h2 class="text-primary">@(Model.Id > 0? "Edit" : "Create")  Prescription</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="row  col-12">
+			<div class="col-6">
+				<div class="mb-3 col-12">
+				<label asp-for="PatientId"></label>
+				<input asp-for="PatientId" class="form-control" />
+				<span asp-validation-for="PatientId" class="text-danger"></span>
+				</div>
+				@*<div class="mb-3 col-12">
+					<label asp-for="Description"></label>
+					<textarea asp-for="Description" rows="3" class="form-control"></textarea>
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>*@
+									
+			</div>
+					
+			<div class="m-1">
+				
+					<button type="submit" class="btn btn-primary" style="width:150px">@(Model.Id > 0? "Edit" : "Create")</button>
+						
+				<a asp-controller="Prescription" asp-action="Index" class="btn btn-secondary" style="width:150px">
+					Back
+				</a>
+			</div>
+						
+				
+		</div>
+</div>		
+	
+
+</form>
+
+
+@section Scripts{
+	@{
+	<partial name="_ValidationScriptsPartial" />
+	}
+<script>
+
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      toolbar_mode: 'floating',
+   });
+  
+	function ValidateInput(){
+		if(document.getElementById("uploadBox").value==""){
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Please upload an Image!',
+			});
+			return false;
+		}
+		return true;
+	}
+</script>
+}

@@ -20,8 +20,8 @@ namespace PharmacyWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Product> obj = await _unitOfWork.Product.GetAllAsync(new string[] { "Brand", "Category" });
-            return View(obj);
+            IEnumerable<Product> Products = await _unitOfWork.Product.GetAllAsync(new string[] { "Brand", "Category" });
+            return View(Products);
         }
 
         //POST
