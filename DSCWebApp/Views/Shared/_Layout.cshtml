@@ -1,0 +1,172 @@
+﻿@using Microsoft.AspNetCore.Http
+@using DSCWebApp.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+@using DSCWebApp.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - DSC Alex</title>
+         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+         <link rel="stylesheet" href="~/plugins/bootstrap/bootstrap.min.css"> 
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+        <!-- Libraries Stylesheet -->
+        
+         <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /> 
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="~/plugins/themify-icons/themify-icons.css">     
+        <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+        <link href="~/css/style.css" rel="stylesheet">
+
+        <!--Favicon-->
+         <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="~/images/favicon.ico" type="image/x-icon"> 
+    </head>
+    <body>
+        <header class="sticky-top navigation bg-white">
+            <div class=container>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    
+                        <a class="navbar-brand " asp-controller="Home" asp-action="Index"> <img class="logo"   src="~/images\Images\Logo.jpg" alt="DSC Logo"/></a>
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav  align-items-center">
+                            <li class="nav-item">                               
+                            </li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="About" asp-action="Index">About</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Services" asp-action="Index">Services</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Team" asp-action="Index">Team</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="View" asp-action="Index">Posts</a></li>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <li class="nav-item dropdown onclick"> <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Manage </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                                            
+                                        <li><a class="dropdown-item" asp-controller="Post" asp-action="Index">Post</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index">Manage Roles</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Users" asp-action="Index">Manage Users</a></li>
+                                        <li><div class="dropdown-divider"></div></li>
+                                    </ul>
+                                </li>
+                            }
+                            <li>
+                                <form class="form-inline search-wrapper d-none d-lg-block mr-3 " asp-controller="Search" asp-action="Result">
+                                <input name="searchString m" class="form-control" placeholder="Search here ...">
+                                <button class="border-0 bg-white" type="submit"><i class="ti-search"></i></button>
+                                </form>
+                            </li>
+                            @using Microsoft.AspNetCore.Identity
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    @if((await UserManager.GetUserAsync(User)).ProfilePicture != null)
+                                    {
+                                    <li class="nav-item ml-3 ">
+                                        <img id="" class="avatar rounded-circle" src="data:image/*;base64,@(Convert.ToBase64String((await UserManager.GetUserAsync(User)).ProfilePicture))" />
+                                    </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item ml-3 ">
+                                            <img id="" class="avatar rounded-circle border border-2 p-0  " src="~/images\Images\Sample_User_Icon.png" />
+                                        </li>            
+                                    }               
+                                    <li class="nav-item dropdown onclick">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" >@((await UserManager.GetUserAsync(User)).FirstName) @((await UserManager.GetUserAsync(User)).LastName)</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li> <a id="manage" class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile Setting</a></li>                 
+                                            <li><div class="dropdown-divider"></div></li>
+                                            <li>
+                                                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home" , new { area="" })">
+                                                    <button id="logout" type="submit" class="dropdown-item text-dark">Logout</button>
+                                                </form>
+                                            </li>    
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item mar">
+                                        <a class="btn btn-sm btn-width btn-outline-primary ml-lg-4" id="login" asp-area="Identity" asp-page="/Account/Login"> Login </a>        
+                                    </li>
+                                    <li class="nav-item  mar">
+                                        <a asp-controller="Donate" asp-action="Index"  class=" btn btn-sm btn-width btn-primary ml-lg-4">Donate</a>
+                                    </li>
+                                }     
+
+                                <li class="nav-item mar ">
+                                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                                        <img class="ml-5 logo2" src="~/images\Images\Alexandria_University_logo.png" alt="Alexandria_University_logo">
+                                    </a>        
+                                </li>                       
+                        </ul>       
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row align-items-center border-bottom py-5">
+                    <div class="col-lg-4">
+                        <ul class="list-inline footer-menu text-center text-lg-left">
+                            <li class="list-inline-item"><a  asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                            <li class="list-inline-item"><a  asp-controller="Donate" asp-action="Index">Donate</a></li>
+                            <li class="list-inline-item"><a  asp-controller="Search" asp-action="Index">Search</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                            <img class="img-fluid" src="~/images\Images\Alexandria_University_logo.png" alt="Alexandria_University_logo">
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <ul class="list-inline social-icons text-lg-right text-center">
+                            <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ti-youtube"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ti-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                @*<div class="py-4 text-center">
+                    <small class="text-light">Copyright © 2020 a hugo theme by <a href="https://themefisher.com">themefisher</a></small>
+                </div>*@
+            </div>
+        </footer>
+
+        <script src="~/plugins/jQuery/jquery.min.js"></script>        
+         <script src="~/plugins/masonry/masonry.min.js"></script>
+        <script src="~/plugins/clipboard/clipboard.min.js"></script>
+        <script src="~/plugins/match-height/jquery.matchHeight-min.js"></script>
+        <script src="~/plugins/jquery-steps/build/jquery.steps.min.js"></script> 
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+        <script src="~/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- Main Script -->
+        <script src="~/js/script.js"></script>
+        <!-- JavaScript Libraries -->        
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>  

@@ -1,0 +1,50 @@
+﻿@using DSCWebApp.Models
+@model PostVM
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+
+
+
+<br /><br />
+<h2 class="text-primary">Post Details</h2>
+<div class="bg-light">
+	<div class="row m-5">	
+		
+		<div class="col-md-3 col-sm-12">
+			@if(Model.PostPicture != null)
+			{
+				<img src="data:image/*;base64,@(Convert.ToBase64String(Model.PostPicture))" class="profile-picture m-3" alt="@Model.Title" />
+			}
+			else
+			{
+				<img src="~/images/Images/Logo.jpg" class="profile-picture" alt="@Model.Title" />
+			}
+		</div>
+		<div class="col-md-7 col-sm-12">
+			<div class="d-flex justify-content-between m-3">
+				<h3>@Model.Title</h3>
+				<span class="text-muted mr-3">
+					<i class="bi "></i>
+					<b>
+						@Model.Category.Name
+					</b>
+				</span>
+			</div>
+			
+			<p class="text-justify m-3">@Model.Description</p>
+		</div>
+	</div>
+</div>
+
+<br /><br />
+	
+
+
+
+@section Scripts{
+	@{
+	<partial name="_ValidationScriptsPartial" />
+	}
+}

@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using DSCWebApp.DataAccess
+@model IEnumerable<Post>
+
+
+<!-- banner -->
+
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="  mb-4" style="color:#375A64;">Disability Support Center</h1>
+                <p class="mb-4">Faculty of Business Alexandria University  </p> 
+            </div>
+            <div class="col-lg-4 d-lg-block  d-none ">
+                <img src="images\Images\Logo.jpg" alt="DSC Logo" width="250px" class="img-fluid rotate_back-animation">
+            </div>     
+        </div>
+
+    <div class="col-lg-12  bootstrap-carousel">
+        
+                <h3 class="">DSC News  </h3>
+                <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="images\Images\6.jpg" class="panner-img" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images\Images\7.jpg"class="panner-img" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images\Images\4.jpg"class="panner-img" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images\Images\5.jpg"class="panner-img" alt="">
+                        </div>
+                    </div>
+                </div>    
+    </div>
+    <br />
+<!-- /banner -->
+<div class=" ">
+    
+    <div class="col-lg-12">
+        <h3 class="">Last Posts</h3>
+        <br />
+        <br />
+        <div class="row">
+            @foreach(var post in Model)
+            {
+                <div class="col-sm-6  col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h6 class="card-title">@post.Title</h6>
+                            <h7 class="card-subtitle mb-2 text-muted">@post.Category.Name</h7>
+                        </div>
+                        @if (post.PostPicture != null)
+                        {
+                            <img class="shop-picture" src="data:image/*;base64,@(Convert.ToBase64String(post.PostPicture))" alt="@post.Title">
+                        }
+                        else
+                        {
+                            <img class="shop-picture" src="~/images/Images/Logo.jpg" alt="@post.Title">
+                        }                        
+                        <div class="card-body">
+                            <p class="card-text">Description: @post.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Post" asp-action="Details" asp-route-Id="@post.Id" class=" btn btn-sm btn-secondary"><small>Details</small></a>
+                        </div>
+                    </div>
+                </div>
+            }                      
+        </div>  
+    </div>
+</div>
+
+
+
+@*<div class="col-lg-12 d-lg-block d-none">
+    <img src="images/banner3.png" alt="illustration">
+</div*@
